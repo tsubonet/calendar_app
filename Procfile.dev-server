@@ -1,4 +1,4 @@
-web: rails s -p 3000
+web: rails s -b 0.0.0.0 -p 3000
 
 # Next line runs the webpack-dev-server
 # You can edit config/webpacker.yml to set HMR to true to see hot reloading
