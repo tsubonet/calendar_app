@@ -21,6 +21,11 @@ var myYear = myDate.getFullYear();	// 年を取得
 var myMonth = myDate.getMonth();	// 月を取得(0月～11月)
 myDate.setDate(1);	// 日付を'１日'に変えて、
 var myWeek = myDate.getDay() - 1;	// '１日'の曜日を取得
+// if(myDate.getDay() === 0) {
+//   var myWeek = 6;
+// } else {
+//   var myWeek = myDate.getDay() - 1;
+// }
 var myTblLine = Math.ceil((myWeek+myMonthTbl[myMonth])/7);	// カレンダーの行数
 var myTable = new Array(7*myTblLine);	// 表のセル数を用意
 for(var i=0; i<7*myTblLine; i++){
