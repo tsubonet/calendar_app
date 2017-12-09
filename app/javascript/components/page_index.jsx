@@ -13,15 +13,36 @@ export default class PageIndex extends React.Component {
 
   }
 
-
-  updateName = (name) => {
-    this.setState({ name });
-  };
+  addDayClass(i) {
+    switch (i){
+      case 5:
+        return 'sat';
+        break;
+      case 6:
+        return 'sun';
+        break;
+      default:
+        return null;
+    }
+  }
 
   render() {
+    const days = ['月','火','水','木','金','土','日'];
     return (
       <div>
-      write some code !
+        <table>
+          <tbody>
+            <tr>
+            {(() => {
+              return days.map((day, i) => {
+                return (
+                  <td className={this.addDayClass(i)} key={i}>{day}</td>
+                )
+              });
+            })()}
+            </tr>
+          </tbody>
+        </table>
       </div>
     );
   }
