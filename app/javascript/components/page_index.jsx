@@ -88,21 +88,22 @@ export default class PageIndex extends React.Component {
 
   render() {
     const days = ['月','火','水','木','金','土','日'];
+    const daysLength = days.length;
     const endOfPrevMonth    = new Date(this.state.year, this.state.month, 0);      // 前月末
     const endOfCurrentMonth = new Date(this.state.year, this.state.month + 1, 0);  // 当月末
     const endOfPrevMonthDay     = endOfPrevMonth.getDay();  　 // 前月末曜日 (0-6)
     const endOfCurrentMonthDate = endOfCurrentMonth.getDate(); // 当月末日付 (1-31)
-    const rows = Math.ceil((endOfPrevMonthDay + endOfCurrentMonthDate) / 7);	// カレンダーの行数
+    const rows = Math.ceil((endOfPrevMonthDay + endOfCurrentMonthDate) / daysLength);	// カレンダーの行数
     const holidayList = [];
 
-    let cells = new Array(7 * rows);	// 表のセル数を用意
+    let cells = new Array(daysLength * rows);	// 表のセル数を用意
     for (var i = 0; i < endOfCurrentMonthDate; i++) {
       cells[endOfPrevMonthDay + i] = i + 1;	// 日付を埋め込む
     }
 
     return (
       <div>
-        <div>{this.state.year}年{this.state.month+1}月</div>
+        <div>{this.state.year}年{this.state.month + 1}月</div>
         <div>
           <a href='#' onClick={this.prevCalendar} className='prev-button'>←</a>
           <a href='#' onClick={this.currentCalendar} className='today-button'>今月</a>
@@ -127,7 +128,7 @@ export default class PageIndex extends React.Component {
                 <tr key={i}>
                 {(() => {
                   return days.map((day, j) => {
-                    const dd = cells[j + ( i * 7 )];
+                    const dd = cells[j + ( i * daysLength )];
                     return (
                       <td className={this.addDayClass(j, dd)} key={j}>{dd}</td>
                     )
