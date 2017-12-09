@@ -9,7 +9,6 @@ export default class PageIndex extends React.Component {
       year: this.getToday().year,
       month: this.getToday().month,
     }
-    //console.log(getHoliday());
     this.prevCalendar = this.prevCalendar.bind(this);
     this.nextCalendar = this.nextCalendar.bind(this);
     this.currentCalendar = this.currentCalendar.bind(this);
@@ -65,10 +64,19 @@ export default class PageIndex extends React.Component {
 
   getToday() {
     return {
-      year: new Date().getFullYear(), // 今日の「年」(4 桁までの年)
+      year: new Date().getFullYear(), // 今日の「年」(4桁までの年)
       month: new Date().getMonth(),   // 今日の「月」(0-11)
       date: new Date().getDate(),	    // 今日の「日」(1-31)
     }
+  }
+
+  isHoliday(dd) {
+    const holidayList = getHoliday(this.state.year).filter((holiday, i) => {
+      return parseInt(holiday.month) === this.state.month + 1; // 当月のみ格納
+    }).map((holiday, i) => {
+      return holiday.day;
+    });
+    return holidayList.indexOf(String(dd)) > -1;
   }
 
   addDayClass(i, dd = null) {
@@ -77,6 +85,9 @@ export default class PageIndex extends React.Component {
       date.push('sat');
     } else if (i === 6) {
       date.push('sun');
+    }
+    if (this.isHoliday(dd)) {
+      date.push('holiday');
     }
     if (this.getToday().year === this.state.year
      && this.getToday().month === this.state.month
@@ -89,12 +100,11 @@ export default class PageIndex extends React.Component {
   render() {
     const days = ['月','火','水','木','金','土','日'];
     const daysLength = days.length;
-    const endOfPrevMonth    = new Date(this.state.year, this.state.month, 0);      // 前月末
-    const endOfCurrentMonth = new Date(this.state.year, this.state.month + 1, 0);  // 当月末
+    const endOfPrevMonth    = new Date(this.state.year, this.state.month, 0);     // 前月末
+    const endOfCurrentMonth = new Date(this.state.year, this.state.month + 1, 0); // 当月末
     const endOfPrevMonthDay     = endOfPrevMonth.getDay();  　 // 前月末曜日 (0-6)
     const endOfCurrentMonthDate = endOfCurrentMonth.getDate(); // 当月末日付 (1-31)
     const rows = Math.ceil((endOfPrevMonthDay + endOfCurrentMonthDate) / daysLength);	// カレンダーの行数
-    const holidayList = [];
 
     let cells = new Array(daysLength * rows);	// 表のセル数を用意
     for (var i = 0; i < endOfCurrentMonthDate; i++) {
