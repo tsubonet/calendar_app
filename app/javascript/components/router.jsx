@@ -3,6 +3,7 @@ import React from 'react';
 import axios from 'axios';
 import NProgress from "nprogress";
 
+import PageIndex from './page_index';
 import Index from './index';
 import Show from './show';
 
@@ -66,6 +67,8 @@ export default class Router extends React.Component {
 
   getComponent() {
     switch (this.state.rootProps.actionPath) {
+      case "calendar#index":
+        return PageIndex;
       case "hello_world#index":
         return Index;
       case "hello_world#show":
