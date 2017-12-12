@@ -12,58 +12,31 @@ export default class PageIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      year: this.getToday().year,
-      month: this.getToday().month,
+      year: this.props.year,
+      month: this.props.month,
     }
-    this.prevCalendar = this.prevCalendar.bind(this);
-    this.nextCalendar = this.nextCalendar.bind(this);
-    this.currentCalendar = this.currentCalendar.bind(this);
   }
 
-  // 当月へ移動
-  currentCalendar(e) {
-    e.preventDefault();
+  componentWillReceiveProps(nextProps) {
     this.setState({
-      year: this.getToday().year,
-      month: this.getToday().month,
+      year: nextProps.year,
+      month: nextProps.month,
     });
   }
 
-  // 前月へ移動
-  prevCalendar(e) {
-    e.preventDefault();
+  prevCalendar() {
     if (this.state.month === 1) {
-      this.setState((prevState, props) => {
-        return {
-          year: prevState.year - 1,
-          month: 12,
-        }
-      });
+      return `/month/${this.state.year-1}/12`
     } else {
-      this.setState((prevState, props) => {
-        return {
-          month: prevState.month - 1,
-        };
-      });
+      return `/month/${this.state.year}/${this.state.month-1}`
     }
   }
 
-  // 翌月へ移動
-  nextCalendar(e) {
-    e.preventDefault();
+  nextCalendar() {
     if (this.state.month === 12) {
-      this.setState((prevState, props) => {
-        return {
-          year: prevState.year + 1,
-          month: 1,
-        }
-      });
+      return `/month/${this.state.year+1}/1`
     } else {
-      this.setState((prevState, props) => {
-        return {
-          month: prevState.month + 1,
-        };
-      });
+      return `/month/${this.state.year}/${this.state.month+1}`
     }
   }
 
@@ -120,9 +93,9 @@ export default class PageIndex extends React.Component {
       <div>
         <div>{this.state.year}年{this.state.month}月</div>
         <div>
-          <a href='#' onClick={this.prevCalendar} className='prev-button'>←</a>
-          <a href='#' onClick={this.currentCalendar} className='today-button'>今月</a>
-          <a href='#' onClick={this.nextCalendar} className='next-button'>→</a>
+          <Link to={this.prevCalendar()} onClick={this.context.clickToGetRootProps} className='prev-button'>←</Link>
+          <Link to='/'                   onClick={this.context.clickToGetRootProps} className='today-button'>今月</Link>
+          <Link to={this.nextCalendar()} onClick={this.context.clickToGetRootProps} className='next-button'>→</Link>
         </div>
         <table>
           <thead>
@@ -146,7 +119,7 @@ export default class PageIndex extends React.Component {
                     const dd = cells[j + ( i * daysLength )];
                     return (
                       <td className={this.addDayClass(j, dd)} key={j}>
-                        <Link to={`/detail?date=${this.state.year}${String(this.state.month).padStart(2, "0")}${String(dd).padStart(2, "0")}`} onClick={this.context.clickToGetRootProps}>{dd}</Link>
+                        <Link to={`/day/${this.state.year}/${this.state.month}/${dd}`} onClick={this.context.clickToGetRootProps}>{dd}</Link>
                       </td>
                     )
                   });

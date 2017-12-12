@@ -10,38 +10,28 @@ export default class PageDetail extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { name: this.props.name };
+    this.state = {
+      year: this.props.year,
+      month: this.props.month,
+      day: this.props.day,
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      name: nextProps.name,
+      year: nextProps.year,
+      month: nextProps.month,
+      day: nextProps.day,
     });
   }
 
-  updateName = (name) => {
-    this.setState({ name });
-  };
 
   render() {
     return (
       <div>
-        <h3>
-          Hello, {this.state.name}!
-        </h3>
+        <h3>{this.state.year}年{this.state.month}月{this.state.day}日</h3>
         <hr />
-        <form>
-          <label htmlFor="name">
-            Say hello to:
-          </label>
-          <input
-            id="name"
-            type="text"
-            value={this.state.name}
-            onChange={(e) => this.updateName(e.target.value)}
-          />
-        </form>
-        <Link to="/" onClick={this.context.clickToGetRootProps}>もどる</Link>
+        <Link to={`/month/${this.state.year}/${this.state.month}`} onClick={this.context.clickToGetRootProps}>もどる</Link>
       </div>
     );
   }
