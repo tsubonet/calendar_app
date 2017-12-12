@@ -1,9 +1,17 @@
 class CalendarController < ApplicationController
 
-  def index
+  def month
+    begin
+      Time.local(params[:year], params[:month])
+      year, month = params[:year].to_i, params[:month].to_i
+    rescue StandardError
+      year, month = Time.new.year, Time.new.month
+    end
+
     render_for_react(
       props: {
-        name: "index"
+        year: year,
+        month: month,
       },
     )
   end

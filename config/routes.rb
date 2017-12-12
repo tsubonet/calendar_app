@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root :to     => 'calendar#index'
+  root :to                 => 'calendar#month'
+  get 'month/:year/:month' => 'calendar#month'
   get 'detail' => 'calendar#detail'
 
   get 'hello_world', to: 'hello_world#index'
