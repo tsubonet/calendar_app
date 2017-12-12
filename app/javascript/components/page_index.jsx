@@ -70,7 +70,7 @@ export default class PageIndex extends React.Component {
   getToday() {
     return {
       year: new Date().getFullYear(), // 今日の「年」(4桁までの年)
-      month: new Date().getMonth()+1,   // 今日の「月」(0-11)+1
+      month: new Date().getMonth()+1, // 今日の「月」(0-11)+1
       date: new Date().getDate(),	    // 今日の「日」(1-31)
     }
   }
@@ -146,7 +146,7 @@ export default class PageIndex extends React.Component {
                     const dd = cells[j + ( i * daysLength )];
                     return (
                       <td className={this.addDayClass(j, dd)} key={j}>
-                        <Link to={`/detail?date=${this.state.year}${this.state.month}${dd}`} onClick={this.context.clickToGetRootProps}>{dd}</Link>
+                        <Link to={`/detail?date=${this.state.year}${String(this.state.month).padStart(2, "0")}${String(dd).padStart(2, "0")}`} onClick={this.context.clickToGetRootProps}>{dd}</Link>
                       </td>
                     )
                   });
