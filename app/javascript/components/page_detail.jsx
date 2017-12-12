@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom';
 
 export default class PageDetail extends React.Component {
 
-  static propTypes = {
-    name: PropTypes.string.isRequired, // this is passed from the Rails view
-  };
-
   static contextTypes = {
     clickToGetRootProps: PropTypes.func,
   }
