@@ -1,30 +1,29 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import axios from 'axios';
+import { Route, Switch } from 'react-router-dom';
 import NProgress from "nprogress";
 
 import PageIndex from './page_index';
 import Index from './index';
 import Show from './show';
+import { sendGet } from "./utils";
 
 export default class Router extends React.Component {
 
-  constructor(...args) {
-    super(...args);
+  constructor(props) {
+    super(props);
     this.state = {
       rootProps: this.props,
     };
   }
 
   static childContextTypes = {
-    onLinkClick: PropTypes.func,
-    rootProps: PropTypes.object,
+    transitTo: PropTypes.func,
   }
 
   getChildContext() {
     return {
-      onLinkClick: this.onLinkClick.bind(this),
-      rootProps: this.state.rootProps,
+      transitTo: this.transitTo.bind(this),
     };
   }
 
@@ -34,28 +33,10 @@ export default class Router extends React.Component {
     });
   }
 
-  onLinkClick(event) {
-    if (!event.metaKey) {
-      event.preventDefault();
-      const anchorElement = event.currentTarget.pathname ? event.currentTarget : event.currentTarget.querySelector("a");
-      this.transitTo(anchorElement.href, { pushState: true });
-    }
-  }
-
-  transitTo(url, { pushState }) {
+  transitTo(url, { pushState }, data = {}) {
     NProgress.start();
-    axios.get(url, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'X-CSRF-Token': document.getElementsByName('csrf-token').item(0).content,
-      }
-    })
-    .then(response => response.data)
+    sendGet(url)
     .then((rootProps) => {
-      if (pushState) {
-        history.pushState({}, "", url);
-      }
       this.setState({ rootProps });
     }).then(() => {
       window.scrollTo(0, 0);
@@ -65,19 +46,14 @@ export default class Router extends React.Component {
     });
   }
 
-  getComponent() {
-    switch (this.state.rootProps.actionPath) {
-      case "calendar#index":
-        return PageIndex;
-      case "hello_world#index":
-        return Index;
-      case "hello_world#show":
-        return Show;
-    }
+  render() {
+    return (
+      <Switch>
+        <Route exact path="/"                 render={() => <PageIndex {...this.state.rootProps} />} />
+        <Route exact path="/hello_world"      render={() => <Index {...this.state.rootProps} />} />
+        <Route exact path="/hello_world/show" render={() => <Show {...this.state.rootProps} />} />
+      </Switch>
+    )
   }
 
-  render() {
-    const Component = this.getComponent();
-    return <Component {...this.state.rootProps}/>
-  }
 }

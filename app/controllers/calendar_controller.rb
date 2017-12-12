@@ -3,7 +3,7 @@ class CalendarController < ApplicationController
   def index
     render_for_react(
       props: {
-        name: "Strangersssssssss"
+        name: "index"
       },
     )
   end
@@ -11,7 +11,7 @@ class CalendarController < ApplicationController
   def show
     render_for_react(
       props: {
-        name: "AAAAAAAAAAA"
+        name: "show"
       },
     )
   end

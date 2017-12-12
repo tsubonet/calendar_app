@@ -1,5 +1,6 @@
 import React from 'react';
 import { getHoliday } from './utils';
+import { Link } from 'react-router-dom';
 
 export default class PageIndex extends React.Component {
 
@@ -150,6 +151,7 @@ export default class PageIndex extends React.Component {
           })()}
           </tbody>
         </table>
+        <Link to="/hello_world">aaa</Link>
       </div>
     );
   }

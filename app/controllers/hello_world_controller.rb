@@ -5,7 +5,7 @@ class HelloWorldController < ApplicationController
   def index
     render_for_react(
       props: {
-        name: "Strangersssssssss"
+        name: "index"
       },
     )
   end
@@ -13,7 +13,7 @@ class HelloWorldController < ApplicationController
   def show
     render_for_react(
       props: {
-        name: "AAAAAAAAAAA"
+        name: "show"
       },
     )
   end
