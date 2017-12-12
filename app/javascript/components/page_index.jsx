@@ -32,11 +32,11 @@ export default class PageIndex extends React.Component {
   // 前月へ移動
   prevCalendar(e) {
     e.preventDefault();
-    if (this.state.month === 0) {
+    if (this.state.month === 1) {
       this.setState((prevState, props) => {
         return {
           year: prevState.year - 1,
-          month: 11,
+          month: 12,
         }
       });
     } else {
@@ -51,11 +51,11 @@ export default class PageIndex extends React.Component {
   // 翌月へ移動
   nextCalendar(e) {
     e.preventDefault();
-    if (this.state.month === 11) {
+    if (this.state.month === 12) {
       this.setState((prevState, props) => {
         return {
           year: prevState.year + 1,
-          month: 0,
+          month: 1,
         }
       });
     } else {
@@ -70,14 +70,14 @@ export default class PageIndex extends React.Component {
   getToday() {
     return {
       year: new Date().getFullYear(), // 今日の「年」(4桁までの年)
-      month: new Date().getMonth(),   // 今日の「月」(0-11)
+      month: new Date().getMonth()+1,   // 今日の「月」(0-11)+1
       date: new Date().getDate(),	    // 今日の「日」(1-31)
     }
   }
 
   isHoliday(dd) {
     const holidayList = getHoliday(this.state.year).filter((holiday, i) => {
-      return parseInt(holiday.month) === this.state.month + 1; // 当月のみ格納
+      return parseInt(holiday.month) === this.state.month; // 当月のみ格納
     }).map((holiday, i) => {
       return holiday.day;
     });
@@ -105,8 +105,8 @@ export default class PageIndex extends React.Component {
   render() {
     const days = ['月','火','水','木','金','土','日'];
     const daysLength = days.length;
-    const endOfPrevMonth    = new Date(this.state.year, this.state.month, 0);     // 前月末
-    const endOfCurrentMonth = new Date(this.state.year, this.state.month + 1, 0); // 当月末
+    const endOfPrevMonth    = new Date(this.state.year, this.state.month-1, 0); // 前月末
+    const endOfCurrentMonth = new Date(this.state.year, this.state.month, 0);   // 当月末
     const endOfPrevMonthDay     = endOfPrevMonth.getDay();  　 // 前月末曜日 (0-6)
     const endOfCurrentMonthDate = endOfCurrentMonth.getDate(); // 当月末日付 (1-31)
     const rows = Math.ceil((endOfPrevMonthDay + endOfCurrentMonthDate) / daysLength);	// カレンダーの行数
@@ -118,7 +118,7 @@ export default class PageIndex extends React.Component {
 
     return (
       <div>
-        <div>{this.state.year}年{this.state.month + 1}月</div>
+        <div>{this.state.year}年{this.state.month}月</div>
         <div>
           <a href='#' onClick={this.prevCalendar} className='prev-button'>←</a>
           <a href='#' onClick={this.currentCalendar} className='today-button'>今月</a>
@@ -146,7 +146,7 @@ export default class PageIndex extends React.Component {
                     const dd = cells[j + ( i * daysLength )];
                     return (
                       <td className={this.addDayClass(j, dd)} key={j}>
-                        <Link to="/">{dd}</Link>
+                        <Link to={`/detail?date=${this.state.year}${this.state.month}${dd}`} onClick={this.context.clickToGetRootProps}>{dd}</Link>
                       </td>
                     )
                   });

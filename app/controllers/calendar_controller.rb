@@ -8,11 +8,12 @@ class CalendarController < ApplicationController
     )
   end
 
-  def show
+  def detail
     render_for_react(
       props: {
-        name: "show"
+        name: "detail"
       },
     )
   end
+
 end
