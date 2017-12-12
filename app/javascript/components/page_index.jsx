@@ -1,8 +1,13 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { getHoliday } from './utils';
 import { Link } from 'react-router-dom';
 
 export default class PageIndex extends React.Component {
+
+  static contextTypes = {
+    clickToGetRootProps: PropTypes.func,
+  }
 
   constructor(props) {
     super(props);
@@ -14,7 +19,6 @@ export default class PageIndex extends React.Component {
     this.nextCalendar = this.nextCalendar.bind(this);
     this.currentCalendar = this.currentCalendar.bind(this);
   }
-
 
   // 当月へ移動
   currentCalendar(e) {
@@ -141,7 +145,9 @@ export default class PageIndex extends React.Component {
                   return days.map((day, j) => {
                     const dd = cells[j + ( i * daysLength )];
                     return (
-                      <td className={this.addDayClass(j, dd)} key={j}>{dd}</td>
+                      <td className={this.addDayClass(j, dd)} key={j}>
+                        <Link to="/">{dd}</Link>
+                      </td>
                     )
                   });
                 })()}

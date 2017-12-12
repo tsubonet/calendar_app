@@ -9,19 +9,12 @@ export default class Index extends React.Component {
   };
 
   static contextTypes = {
-    transitTo: PropTypes.func,
+    clickToGetRootProps: PropTypes.func,
   }
 
-  /**
-   * @param props - Comes from your rails view.
-   */
   constructor(props) {
     super(props);
-
-    // How to set initial state in ES6 class syntax
-    // https://facebook.github.io/react/docs/reusable-components.html#es6-classes
     this.state = { name: this.props.name };
-    this.getRootProps = this.getRootProps.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -29,11 +22,6 @@ export default class Index extends React.Component {
       name: nextProps.name,
     });
   }
-
-  getRootProps(e) {
-    this.context.transitTo(e.currentTarget.href, { pushState: true });
-  }
-
 
   updateName = (name) => {
     this.setState({ name });
@@ -59,7 +47,7 @@ export default class Index extends React.Component {
         </form>
         <Link to="/">top</Link>
         <hr />
-        <Link to="/hello_world/show" onClick={this.getRootProps}>show</Link>
+        <Link to="/hello_world/show" onClick={this.context.clickToGetRootProps}>show</Link>
       </div>
     );
   }

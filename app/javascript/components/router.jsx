@@ -18,12 +18,12 @@ export default class Router extends React.Component {
   }
 
   static childContextTypes = {
-    transitTo: PropTypes.func,
+    clickToGetRootProps: PropTypes.func,
   }
 
   getChildContext() {
     return {
-      transitTo: this.transitTo.bind(this),
+      clickToGetRootProps: this.clickToGetRootProps.bind(this),
     };
   }
 
@@ -31,6 +31,10 @@ export default class Router extends React.Component {
     window.addEventListener("popstate", () => {
       this.transitTo(document.location.href, { pushState: false });
     });
+  }
+
+  clickToGetRootProps(e) {
+    this.transitTo(e.currentTarget.href, { pushState: true });
   }
 
   transitTo(url, { pushState }, data = {}) {
