@@ -54,8 +54,8 @@ export default class Router extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/"                      render={() => <PageIndex {...this.state.rootProps} />} />
-        <Route exact path="/month/:year/:month"    render={() => <PageIndex {...this.state.rootProps} />} />
+        <Route exact path="/"                      render={(props) => <PageIndex  {...this.state.rootProps} {...props} />} />
+        <Route exact path="/month/:year/:month"    render={(props) => <PageIndex  {...this.state.rootProps} {...props} />} />
         <Route exact path="/day/:year/:month/:day" render={(props) => <PageDetail {...this.state.rootProps} {...props} />} />
 
         <Route exact path="/hello_world"      render={() => <Index {...this.state.rootProps} />} />

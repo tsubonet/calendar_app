@@ -14,6 +14,7 @@ export default class PageIndex extends React.Component {
     this.state = {
       year: this.props.year,
       month: this.props.month,
+      records: this.props.records,
     }
   }
 
@@ -21,6 +22,7 @@ export default class PageIndex extends React.Component {
     this.setState({
       year: nextProps.year,
       month: nextProps.month,
+      records: nextProps.records,
     });
   }
 
@@ -85,7 +87,7 @@ export default class PageIndex extends React.Component {
     const rows = Math.ceil((endOfPrevMonthDay + endOfCurrentMonthDate) / daysLength);	// カレンダーの行数
 
     let cells = new Array(daysLength * rows);	// 表のセル数を用意
-    for (var i = 0; i < endOfCurrentMonthDate; i++) {
+    for (let i = 0; i < endOfCurrentMonthDate; i++) {
       cells[endOfPrevMonthDay + i] = i + 1;	// 日付を埋め込む
     }
 
@@ -117,9 +119,16 @@ export default class PageIndex extends React.Component {
                 {(() => {
                   return days.map((day, j) => {
                     const dd = cells[j + ( i * daysLength )];
+                    console.log("this.state.records",this.state.records);
+                    // this.state.records.forEach((record) => {
+                    //   console.log(record.done_on);
+                    //   //return /\d{4}-\d{2}-\d{2}/.test(record.done_on)
+                    // });
                     return (
                       <td className={this.addDayClass(j, dd)} key={j}>
-                        <Link to={`/day/${this.state.year}/${this.state.month}/${dd}`} onClick={this.context.clickToGetRootProps}>{dd}</Link>
+                        <Link to={`/day/${this.state.year}/${this.state.month}/${dd}`} onClick={this.context.clickToGetRootProps}>
+                        {dd}
+                        </Link>
                       </td>
                     )
                   });

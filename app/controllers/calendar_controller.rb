@@ -8,10 +8,13 @@ class CalendarController < ApplicationController
       year, month = Time.new.year, Time.new.month
     end
 
+    records = Record.where(done_on: Time.new(year, month, 1).all_month)
+
     render_for_react(
       props: {
         year: year,
         month: month,
+        records: records,
       },
     )
   end
