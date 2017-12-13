@@ -12,8 +12,14 @@ export default class PageDetail extends React.Component {
   constructor(props) {
     super(props);
     let { year, month, day } = this.props.match.params;
-    this.state = Object.assign({result: ''}, this.validDate(parseInt(year), parseInt(month), parseInt(day)));
+    this.state = Object.assign({result: this.props.result}, this.validDate(parseInt(year), parseInt(month), parseInt(day)));
     this.selectResult = this.selectResult.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      result: nextProps.result,
+    });
   }
 
   validDate(yy, mm, dd) {
@@ -37,7 +43,7 @@ export default class PageDetail extends React.Component {
     const result = e.target.getAttribute("data-result");
     let data = {
       result: result,
-      done_on: new Date(),
+      done_on: `${this.state.year}-${this.state.month}-${this.state.day}`,
     }
     sendPost('/records', data)
     .then((data) => {
