@@ -11,15 +11,8 @@ export default class PageDetail extends React.Component {
   constructor(props) {
     super(props);
     let { year, month, day } = this.props.match.params;
-    this.state = this.validDate(parseInt(year), parseInt(month), parseInt(day));
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      year: nextProps.year,
-      month: nextProps.month,
-      day: nextProps.day,
-    });
+    this.state = Object.assign({result: ''}, this.validDate(parseInt(year), parseInt(month), parseInt(day)));
+    this.selectResult = this.selectResult.bind(this);
   }
 
   validDate(yy, mm, dd) {
@@ -39,11 +32,22 @@ export default class PageDetail extends React.Component {
     }
   }
 
+  selectResult(e) {
+    this.setState({
+      result: e.target.getAttribute("data-result")
+    });
+  }
 
   render() {
     return (
       <div>
-        <h3>{this.state.year}年{this.state.month}月{this.state.day}日</h3>
+        <p>{this.state.year}年{this.state.month}月{this.state.day}日</p>
+
+        <div>{this.state.result}</div>
+
+        <button onClick={this.selectResult} className={this.state.result === 'good'? 'isSelected' : ''} data-result="good">○</button>
+        <button onClick={this.selectResult} className={this.state.result === 'limited'? 'isSelected' : ''} data-result="limited">△</button>
+        <button onClick={this.selectResult} className={this.state.result === 'bad'? 'isSelected' : ''} data-result="bad">×</button>
         <hr />
         <Link to={`/month/${this.state.year}/${this.state.month}`} onClick={this.context.clickToGetRootProps}>もどる</Link>
       </div>
