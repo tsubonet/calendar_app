@@ -10,11 +10,8 @@ export default class PageDetail extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      year: this.props.year,
-      month: this.props.month,
-      day: this.props.day,
-    }
+    let { year, month, day } = this.props.match.params;
+    this.state = this.validDate(parseInt(year), parseInt(month), parseInt(day));
   }
 
   componentWillReceiveProps(nextProps) {
@@ -23,6 +20,23 @@ export default class PageDetail extends React.Component {
       month: nextProps.month,
       day: nextProps.day,
     });
+  }
+
+  validDate(yy, mm, dd) {
+    const dt = new Date(yy, mm - 1, dd);
+    if (dt.getFullYear() === yy && dt.getMonth() === mm-1 && dt.getDate() === dd){
+      return {
+        year: yy,
+        month: mm,
+        day: dd,
+      }
+    } else {
+      return {
+        year: this.props.year,
+        month: this.props.month,
+        day: this.props.day,
+      }
+    }
   }
 
 
