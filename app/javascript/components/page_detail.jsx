@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { sendPost } from "./utils";
 
 export default class PageDetail extends React.Component {
 
@@ -33,9 +34,19 @@ export default class PageDetail extends React.Component {
   }
 
   selectResult(e) {
-    this.setState({
-      result: e.target.getAttribute("data-result")
-    });
+    const result = e.target.getAttribute("data-result");
+    let data = {
+      result: result,
+      done_on: new Date(),
+    }
+    sendPost('/records', data)
+    .then((data) => {
+      if (data.status === 'success') {
+        this.setState({
+          result: result
+        });
+      }
+    })
   }
 
   render() {

@@ -12,4 +12,14 @@ const sendGet = (url) => {
   }).then(response => response.data);
 }
 
-export { getHoliday, sendGet };
+const sendPost = (url, data) => {
+  return axios.post(url, data, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': document.getElementsByName('csrf-token').item(0).content,
+    },
+  }).then(response => response.data);
+}
+
+export { getHoliday, sendGet, sendPost };
