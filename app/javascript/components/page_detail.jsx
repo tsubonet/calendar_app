@@ -58,9 +58,9 @@ export default class PageDetail extends React.Component {
 
         <div>{this.state.result}</div>
 
-        <button onClick={this.selectResult} className={this.state.result === 'good'? 'isSelected' : ''} data-result="good">○</button>
+        <button onClick={this.selectResult} className={this.state.result === 'good'? 'isSelected' : ''}    data-result="good">○</button>
         <button onClick={this.selectResult} className={this.state.result === 'limited'? 'isSelected' : ''} data-result="limited">△</button>
-        <button onClick={this.selectResult} className={this.state.result === 'bad'? 'isSelected' : ''} data-result="bad">×</button>
+        <button onClick={this.selectResult} className={this.state.result === 'bad'? 'isSelected' : ''}     data-result="bad">×</button>
         <hr />
         <Link history={this.props.history} href={`/month/${this.state.year}/${this.state.month}`}>もどる</Link>
       </div>

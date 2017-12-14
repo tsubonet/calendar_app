@@ -7,7 +7,6 @@ export default class PageIndex extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       year: this.props.year,
       month: this.props.month,
@@ -75,6 +74,7 @@ export default class PageIndex extends React.Component {
   }
 
   render() {
+    console.log("this.state.records",this.state.records);
     const days = ['月','火','水','木','金','土','日'];
     const daysLength = days.length;
     const endOfPrevMonth    = new Date(this.state.year, this.state.month-1, 0); // 前月末
@@ -116,15 +116,19 @@ export default class PageIndex extends React.Component {
                 {(() => {
                   return days.map((day, j) => {
                     const dd = cells[j + ( i * daysLength )];
-                    //console.log("this.state.records",this.state.records);
-                    // this.state.records.forEach((record) => {
-                    //   console.log(record.done_on);
-                    //   //return /\d{4}-\d{2}-\d{2}/.test(record.done_on)
-                    // });
+                    const record = this.state.records.find((record) => {
+                      const pattern = new RegExp("\\d{4}-\\d{2}-" + String(dd).padStart(2, "0"));
+                      return pattern.test(record.done_on)
+                    });
                     return (
                       <td className={this.addDayClass(j, dd)} key={j}>
                         <Link history={this.props.history} href={`/day/${this.state.year}/${this.state.month}/${dd}`}>
-                        {dd}
+                          <div>{dd}</div>
+                          {(() => {
+                            if (typeof record !== 'undefined') {
+                              return <div>{record.result}</div>;
+                            }
+                          })()}
                         </Link>
                       </td>
                     )
