@@ -4,16 +4,20 @@ import React from 'react';
 export default class Link extends React.Component {
 
   static contextTypes = {
-    onLinkClick: PropTypes.func,
+    transitTo: PropTypes.func,
   }
 
   onClick(event) {
-    this.context.onLinkClick(event);
+    if (!event.metaKey) {
+      event.preventDefault();
+      this.context.transitTo(event.currentTarget.getAttribute('href'), { pushState: true }, this.props.history);
+    }
   }
 
   render() {
+    const { href, className } = this.props;
     return(
-      <a onClick={this.onClick.bind(this)} {...this.props}>
+      <a onClick={this.onClick.bind(this)} href={href} className={className}>
         {this.props.children}
       </a>
     );

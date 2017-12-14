@@ -19,12 +19,12 @@ export default class Router extends React.Component {
   }
 
   static childContextTypes = {
-    clickToGetRootProps: PropTypes.func,
+    transitTo: PropTypes.func,
   }
 
   getChildContext() {
     return {
-      clickToGetRootProps: this.clickToGetRootProps.bind(this),
+      transitTo: this.transitTo.bind(this),
     };
   }
 
@@ -34,14 +34,13 @@ export default class Router extends React.Component {
     });
   }
 
-  clickToGetRootProps(e) {
-    this.transitTo(e.currentTarget.href, { pushState: true });
-  }
-
-  transitTo(url, { pushState }, data = {}) {
+  transitTo(url, { pushState }, history = null) {
     NProgress.start();
     sendGet(url)
     .then((rootProps) => {
+      if (pushState) {
+        history.push(url);
+      }
       this.setState({ rootProps });
     }).then(() => {
       window.scrollTo(0, 0);
@@ -54,9 +53,9 @@ export default class Router extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/"                      render={(props) => <PageIndex  {...this.state.rootProps} {...props} />} />
-        <Route exact path="/month/:year/:month"    render={(props) => <PageIndex  {...this.state.rootProps} {...props} />} />
-        <Route exact path="/day/:year/:month/:day" render={(props) => <PageDetail {...this.state.rootProps} {...props} />} />
+        <Route exact path="/"                      render={(props) => <PageIndex  {...props} {...this.state.rootProps} />} />
+        <Route exact path="/month/:year/:month"    render={(props) => <PageIndex  {...props} {...this.state.rootProps} />} />
+        <Route exact path="/day/:year/:month/:day" render={(props) => <PageDetail {...props} {...this.state.rootProps} />} />
 
         <Route exact path="/hello_world"      render={() => <Index {...this.state.rootProps} />} />
         <Route exact path="/hello_world/show" render={() => <Show {...this.state.rootProps} />} />

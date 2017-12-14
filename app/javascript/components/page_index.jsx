@@ -1,16 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { getHoliday } from './utils';
-import { Link } from 'react-router-dom';
+import Link from './link';
 
 export default class PageIndex extends React.Component {
 
-  static contextTypes = {
-    clickToGetRootProps: PropTypes.func,
-  }
-
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       year: this.props.year,
       month: this.props.month,
@@ -95,9 +92,9 @@ export default class PageIndex extends React.Component {
       <div>
         <div>{this.state.year}年{this.state.month}月</div>
         <div>
-          <Link to={this.prevCalendar()} onClick={this.context.clickToGetRootProps} className='prev-button'>←</Link>
-          <Link to='/'                   onClick={this.context.clickToGetRootProps} className='today-button'>今月</Link>
-          <Link to={this.nextCalendar()} onClick={this.context.clickToGetRootProps} className='next-button'>→</Link>
+          <Link history={this.props.history} href={this.prevCalendar()} className='prev-button'>←</Link>
+          <Link history={this.props.history} href='/'                   className='today-button'>今月</Link>
+          <Link history={this.props.history} href={this.nextCalendar()} className='next-button'>→</Link>
         </div>
         <table>
           <thead>
@@ -119,14 +116,14 @@ export default class PageIndex extends React.Component {
                 {(() => {
                   return days.map((day, j) => {
                     const dd = cells[j + ( i * daysLength )];
-                    console.log("this.state.records",this.state.records);
+                    //console.log("this.state.records",this.state.records);
                     // this.state.records.forEach((record) => {
                     //   console.log(record.done_on);
                     //   //return /\d{4}-\d{2}-\d{2}/.test(record.done_on)
                     // });
                     return (
                       <td className={this.addDayClass(j, dd)} key={j}>
-                        <Link to={`/day/${this.state.year}/${this.state.month}/${dd}`} onClick={this.context.clickToGetRootProps}>
+                        <Link history={this.props.history} href={`/day/${this.state.year}/${this.state.month}/${dd}`}>
                         {dd}
                         </Link>
                       </td>
@@ -139,7 +136,7 @@ export default class PageIndex extends React.Component {
           })()}
           </tbody>
         </table>
-        <Link to="/hello_world">aaa</Link>
+        <Link href="/hello_world">aaa</Link>
       </div>
     );
   }
