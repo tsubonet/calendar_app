@@ -1,20 +1,22 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Link from './link';
-import { sendPost } from "./utils";
+import { sendPost, sendPatch } from "./utils";
 
 export default class PageDetail extends React.Component {
 
   constructor(props) {
     super(props);
     let { year, month, day } = this.props.match.params;
-    this.state = Object.assign({result: this.props.result}, this.validDate(parseInt(year), parseInt(month), parseInt(day)));
+    this.state = Object.assign({}, {
+      record: this.props.record || {}
+    }, this.validDate(parseInt(year), parseInt(month), parseInt(day)));
     this.selectResult = this.selectResult.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      result: nextProps.result,
+      record: nextProps.record,
     });
   }
 
@@ -37,30 +39,46 @@ export default class PageDetail extends React.Component {
 
   selectResult(e) {
     const result = e.target.getAttribute("data-result");
-    let data = {
-      result: result,
-      done_on: `${this.state.year}-${this.state.month}-${this.state.day}`,
+
+    if (this.state.record) {
+      sendPatch('/records/'+ this.state.record.id, {
+        result: result,
+      })
+      .then((data) => {
+        if (data.status === 'success') {
+          this.setState({
+            record: data.record
+          });
+        }
+      })
+    } else {
+      sendPost('/records', {
+        result: result,
+        done_on: `${this.state.year}-${this.state.month}-${this.state.day}`,
+      })
+      .then((data) => {
+        if (data.status === 'success') {
+          this.setState({
+            record: data.record
+          });
+        }
+      })
     }
-    sendPost('/records', data)
-    .then((data) => {
-      if (data.status === 'success') {
-        this.setState({
-          result: result
-        });
-      }
-    })
   }
 
   render() {
     return (
       <div>
         <p>{this.state.year}年{this.state.month}月{this.state.day}日</p>
+        {(() => {
+          if (this.state.record !== undefined && this.state.record !== null) {
+            return <div>{this.state.record.result}</div>;
+          }
+        })()}
 
-        <div>{this.state.result}</div>
-
-        <button onClick={this.selectResult} className={this.state.result === 'good'? 'isSelected' : ''}    data-result="good">○</button>
-        <button onClick={this.selectResult} className={this.state.result === 'limited'? 'isSelected' : ''} data-result="limited">△</button>
-        <button onClick={this.selectResult} className={this.state.result === 'bad'? 'isSelected' : ''}     data-result="bad">×</button>
+        <button onClick={this.selectResult} className={this.state.record !== undefined && this.state.record !== null && this.state.record.result === 'good'? 'isSelected' : ''}    data-result="good">○</button>
+        <button onClick={this.selectResult} className={this.state.record !== undefined && this.state.record !== null && this.state.record.result === 'limited'? 'isSelected' : ''} data-result="limited">△</button>
+        <button onClick={this.selectResult} className={this.state.record !== undefined && this.state.record !== null && this.state.record.result === 'bad'? 'isSelected' : ''}     data-result="bad">×</button>
         <hr />
         <Link history={this.props.history} href={`/month/${this.state.year}/${this.state.month}`}>もどる</Link>
       </div>

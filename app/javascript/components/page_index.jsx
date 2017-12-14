@@ -8,9 +8,9 @@ export default class PageIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      year: this.props.year,
-      month: this.props.month,
-      records: this.props.records,
+      year: this.props.year || '',
+      month: this.props.month || '',
+      records: this.props.records || [],
     }
   }
 
@@ -74,7 +74,6 @@ export default class PageIndex extends React.Component {
   }
 
   render() {
-    console.log("this.state.records",this.state.records);
     const days = ['月','火','水','木','金','土','日'];
     const daysLength = days.length;
     const endOfPrevMonth    = new Date(this.state.year, this.state.month-1, 0); // 前月末
@@ -140,7 +139,6 @@ export default class PageIndex extends React.Component {
           })()}
           </tbody>
         </table>
-        <Link href="/hello_world">aaa</Link>
       </div>
     );
   }

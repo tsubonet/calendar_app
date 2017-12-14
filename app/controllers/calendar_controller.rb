@@ -27,17 +27,14 @@ class CalendarController < ApplicationController
       year, month, day = Time.new.year, Time.new.month, Time.new.day
     end
 
-    result =
-      if record = Record.find_by(done_on: "#{year}-#{month}-#{day}")
-         record.result
-      end
+    record = Record.find_by(done_on: "#{year}-#{month}-#{day}")
 
     render_for_react(
       props: {
         year: year,
         month: month,
         day: day,
-        result: result,
+        record: record,
       },
     )
   end

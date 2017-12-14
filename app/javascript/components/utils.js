@@ -22,4 +22,15 @@ const sendPost = (url, data) => {
   }).then(response => response.data);
 }
 
-export { getHoliday, sendGet, sendPost };
+const sendPatch = (url, data) => {
+  return axios.patch(url, data, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': document.getElementsByName('csrf-token').item(0).content,
+    },
+  }).then(response => response.data);
+}
+
+
+export { getHoliday, sendGet, sendPost, sendPatch };

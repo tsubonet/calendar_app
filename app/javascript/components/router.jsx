@@ -5,8 +5,6 @@ import NProgress from "nprogress";
 
 import PageIndex from './page_index';
 import PageDetail from './page_detail';
-import Index from './index';
-import Show from './show';
 import { sendGet } from "./utils";
 
 export default class Router extends React.Component {
@@ -56,9 +54,6 @@ export default class Router extends React.Component {
         <Route exact path="/"                      render={(props) => <PageIndex  {...props} {...this.state.rootProps} />} />
         <Route exact path="/month/:year/:month"    render={(props) => <PageIndex  {...props} {...this.state.rootProps} />} />
         <Route exact path="/day/:year/:month/:day" render={(props) => <PageDetail {...props} {...this.state.rootProps} />} />
-
-        <Route exact path="/hello_world"      render={() => <Index {...this.state.rootProps} />} />
-        <Route exact path="/hello_world/show" render={() => <Show {...this.state.rootProps} />} />
       </Switch>
     )
   }
