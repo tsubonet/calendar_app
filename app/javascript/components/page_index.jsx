@@ -7,6 +7,7 @@ export default class PageIndex extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log(props)
     this.state = {
       year: this.props.year || '',
       month: this.props.month || '',
