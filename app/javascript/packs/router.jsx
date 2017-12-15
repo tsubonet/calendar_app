@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import NProgress from "nprogress";
+import PropTypes from 'prop-types'
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
+import NProgress from "nprogress"
 
-import PageIndex from './page_index';
-import PageDetail from './page_detail';
-import { sendGet } from "./utils";
+import PageIndexContainer from '../containers/page_index_container'
+//import PageDetail from './page_detail'
+import { sendGet } from "../utils/utils"
 
 export default class Router extends React.Component {
 
@@ -51,9 +51,12 @@ export default class Router extends React.Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/"                      render={(props) => <PageIndex  {...props} {...this.state.rootProps} />} />
-        <Route exact path="/month/:year/:month"    render={(props) => <PageIndex  {...props} {...this.state.rootProps} />} />
-        <Route exact path="/day/:year/:month/:day" render={(props) => <PageDetail {...props} {...this.state.rootProps} />} />
+        <Route exact path="/"                   component={PageIndexContainer} />
+        <Route exact path="/month/:year/:month" component={PageIndexContainer} />
+{
+  //<Route exact path="/day/:year/:month/:day" render={(props) => <PageDetail {...props} {...this.state.rootProps} />} />
+}
+
       </Switch>
     )
   }

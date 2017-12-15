@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Link from './link';
-import { sendPost, sendPatch } from "./utils";
+import { sendPost, sendPatch } from "../utils/utils";
 
 export default class PageDetail extends React.Component {
 
