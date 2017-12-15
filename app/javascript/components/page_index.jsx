@@ -1,17 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { getHoliday } from '../utils/utils';
-import Link from './link';
+import { Link } from 'react-router-dom';
 
 export default class PageIndex extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props)
     this.state = {
-      year: this.props.year || '',
-      month: this.props.month || '',
-      records: this.props.records || [],
+      year: this.props.year,
+      month: this.props.month,
+      records: this.props.records,
     }
   }
 
@@ -20,6 +19,12 @@ export default class PageIndex extends React.Component {
       year: nextProps.year,
       month: nextProps.month,
       records: nextProps.records,
+    });
+  }
+
+  componentDidMount() {
+    window.addEventListener("popstate", () => {
+      this.props.onFetchData2(document.location.href)
     });
   }
 
@@ -92,9 +97,9 @@ export default class PageIndex extends React.Component {
       <div>
         <div>{this.state.year}年{this.state.month}月</div>
         <div>
-          <Link history={this.props.history} href={this.prevCalendar()} className='prev-button'>←</Link>
-          <Link history={this.props.history} href='/'                   className='today-button'>今月</Link>
-          <Link history={this.props.history} href={this.nextCalendar()} className='next-button'>→</Link>
+          <Link to={this.prevCalendar()} onClick={this.props.onFetchData} className='prev-button'>←</Link>
+          <Link to='/'                   onClick={this.props.onFetchData} className='today-button'>今月</Link>
+          <Link to={this.nextCalendar()} onClick={this.props.onFetchData} className='next-button'>→</Link>
         </div>
         <table>
           <thead>
@@ -122,7 +127,7 @@ export default class PageIndex extends React.Component {
                     });
                     return (
                       <td className={this.addDayClass(j, dd)} key={j}>
-                        <Link history={this.props.history} href={`/day/${this.state.year}/${this.state.month}/${dd}`}>
+                        <Link to={`/day/${this.state.year}/${this.state.month}/${dd}`}>
                           <div>{dd}</div>
                           {(() => {
                             if (typeof record !== 'undefined') {
