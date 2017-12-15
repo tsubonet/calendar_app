@@ -13,7 +13,7 @@ const App = (props, railsContext) => {
   return (
     <Provider store={store}>
       <StaticRouter location={location} context={context}>
-        <Router {...props} />
+        <Router />
       </StaticRouter>
     </Provider>
   )

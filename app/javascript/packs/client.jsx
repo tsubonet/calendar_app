@@ -11,7 +11,7 @@ const App = (props, railsContext) => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Router {...props} />
+        <Router />
       </BrowserRouter>
     </Provider>
   )
