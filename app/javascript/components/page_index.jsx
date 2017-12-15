@@ -8,16 +8,14 @@ export default class PageIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      year: this.props.year,
-      month: this.props.month,
+      date: this.props.date,
       records: this.props.records,
     }
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      year: nextProps.year,
-      month: nextProps.month,
+      date: nextProps.date,
       records: nextProps.records,
     });
   }
@@ -29,18 +27,18 @@ export default class PageIndex extends React.Component {
   }
 
   prevCalendar() {
-    if (this.state.month === 1) {
-      return `/month/${this.state.year-1}/12`
+    if (this.state.date.month === 1) {
+      return `/month/${this.state.date.year-1}/12`
     } else {
-      return `/month/${this.state.year}/${this.state.month-1}`
+      return `/month/${this.state.date.year}/${this.state.date.month-1}`
     }
   }
 
   nextCalendar() {
-    if (this.state.month === 12) {
-      return `/month/${this.state.year+1}/1`
+    if (this.state.date.month === 12) {
+      return `/month/${this.state.date.year+1}/1`
     } else {
-      return `/month/${this.state.year}/${this.state.month+1}`
+      return `/month/${this.state.date.year}/${this.state.date.month+1}`
     }
   }
 
@@ -53,8 +51,8 @@ export default class PageIndex extends React.Component {
   }
 
   isHoliday(dd) {
-    const holidayList = getHoliday(this.state.year).filter((holiday, i) => {
-      return parseInt(holiday.month) === this.state.month; // 当月のみ格納
+    const holidayList = getHoliday(this.state.date.year).filter((holiday, i) => {
+      return parseInt(holiday.month) === this.state.date.month; // 当月のみ格納
     }).map((holiday, i) => {
       return holiday.day;
     });
@@ -71,8 +69,8 @@ export default class PageIndex extends React.Component {
     if (this.isHoliday(dd)) {
       date.push('holiday');
     }
-    if (this.getToday().year === this.state.year
-     && this.getToday().month === this.state.month
+    if (this.getToday().year === this.state.date.year
+     && this.getToday().month === this.state.date.month
      && this.getToday().date === dd) {
       date.push('today');
     }
@@ -82,8 +80,8 @@ export default class PageIndex extends React.Component {
   render() {
     const days = ['月','火','水','木','金','土','日'];
     const daysLength = days.length;
-    const endOfPrevMonth    = new Date(this.state.year, this.state.month-1, 0); // 前月末
-    const endOfCurrentMonth = new Date(this.state.year, this.state.month, 0);   // 当月末
+    const endOfPrevMonth    = new Date(this.state.date.year, this.state.date.month-1, 0); // 前月末
+    const endOfCurrentMonth = new Date(this.state.date.year, this.state.date.month, 0);   // 当月末
     const endOfPrevMonthDay     = endOfPrevMonth.getDay();  　 // 前月末曜日 (0-6)
     const endOfCurrentMonthDate = endOfCurrentMonth.getDate(); // 当月末日付 (1-31)
     const rows = Math.ceil((endOfPrevMonthDay + endOfCurrentMonthDate) / daysLength);	// カレンダーの行数
@@ -95,7 +93,7 @@ export default class PageIndex extends React.Component {
 
     return (
       <div>
-        <div>{this.state.year}年{this.state.month}月</div>
+        <div>{this.state.date.year}年{this.state.date.month}月</div>
         <div>
           <Link to={this.prevCalendar()} onClick={this.props.onFetchData} className='prev-button'>←</Link>
           <Link to='/'                   onClick={this.props.onFetchData} className='today-button'>今月</Link>
@@ -127,7 +125,7 @@ export default class PageIndex extends React.Component {
                     });
                     return (
                       <td className={this.addDayClass(j, dd)} key={j}>
-                        <Link to={`/day/${this.state.year}/${this.state.month}/${dd}`}>
+                        <Link to={`/day/${this.state.date.year}/${this.state.date.month}/${dd}`} onClick={this.props.onFetchData}>
                           <div>{dd}</div>
                           {(() => {
                             if (typeof record !== 'undefined') {

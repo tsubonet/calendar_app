@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
-import year from './year.js'
-import month from './month.js'
-import records from './records.js'
+import date from './date'
+import records from './records'
+import record from './record'
 
 const mainApp = combineReducers({
-  year,
-  month,
+  date,
   records,
+  record,
 });
 
 export default mainApp;

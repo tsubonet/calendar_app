@@ -11,16 +11,12 @@ export const fetchData = (url) => {
         records: response.records
       });
       dispatch({
-        type: 'GET_YEAR',
-        year: response.year
+        type: 'GET_RECORD',
+        record: response.record
       });
       dispatch({
-        type: 'GET_MONTH',
-        month: response.month
-      });
-      dispatch({
-        type: 'GET_DAY',
-        day: response.day
+        type: 'GET_DATE',
+        date: response.date
       });
     }).then(() => {
       window.scrollTo(0, 0);

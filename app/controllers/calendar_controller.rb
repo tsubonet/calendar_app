@@ -11,8 +11,11 @@ class CalendarController < ApplicationController
 
     render_for_react(
       props: {
-        year: year,
-        month: month,
+        date: {
+          year: year,
+          month: month,
+          day: 1,
+        },
         records: Record.where(done_on: Time.new(year, month, 1).all_month),
       },
     )
@@ -29,9 +32,11 @@ class CalendarController < ApplicationController
 
     render_for_react(
       props: {
-        year: year,
-        month: month,
-        day: day,
+        date: {
+          year: year,
+          month: month,
+          day: day,
+        },
         record: Record.find_by(done_on: "#{year}-#{month}-#{day}"),
       },
     )

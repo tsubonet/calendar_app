@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 import { fetchData } from '../actions/records'
-import PageIndex from '../components/page_index'
+import PageDetail from '../components/page_detail'
 
 const mapStateToProps = (state) => {
   return {
     date: state.date,
-    records: state.records,
+    record: state.record,
   }
 }
 
@@ -20,9 +20,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const PageIndexContainer = connect(
+const PageDetailContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(PageIndex)
+)(PageDetail)
 
-export default PageIndexContainer;
+export default PageDetailContainer;
