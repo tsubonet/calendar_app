@@ -42,7 +42,7 @@ export default class PageDetail extends React.Component {
   selectResult(e) {
     const result = e.target.getAttribute("data-result");
 
-    if (Object.keys(this.state.record).length) {
+    if (this.state.record !== null) {
       sendPatch('/records/'+ this.state.record.id, {
         result: result,
       })
@@ -73,14 +73,14 @@ export default class PageDetail extends React.Component {
       <div>
         <p>{this.state.date.year}年{this.state.date.month}月{this.state.date.day}日</p>
         {(() => {
-          if (Object.keys(this.state.record).length) {
+          if (this.state.record !== null) {
             return <div>{this.state.record.result}</div>;
           }
         })()}
 
-        <button onClick={this.selectResult} className={Object.keys(this.state.record).length && this.state.record.result === 'good'? 'isSelected' : ''}    data-result="good">○</button>
-        <button onClick={this.selectResult} className={Object.keys(this.state.record).length && this.state.record.result === 'limited'? 'isSelected' : ''} data-result="limited">△</button>
-        <button onClick={this.selectResult} className={Object.keys(this.state.record).length && this.state.record.result === 'bad'? 'isSelected' : ''}     data-result="bad">×</button>
+        <button onClick={this.selectResult} className={this.state.record !== null && this.state.record.result === 'good'? 'isSelected' : ''}    data-result="good">○</button>
+        <button onClick={this.selectResult} className={this.state.record !== null && this.state.record.result === 'limited'? 'isSelected' : ''} data-result="limited">△</button>
+        <button onClick={this.selectResult} className={this.state.record !== null && this.state.record.result === 'bad'? 'isSelected' : ''}     data-result="bad">×</button>
         <hr />
         <Link to={`/month/${this.state.date.year}/${this.state.date.month}`} onClick={this.props.onFetchData}>もどる</Link>
       </div>

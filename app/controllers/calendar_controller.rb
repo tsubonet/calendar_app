@@ -16,6 +16,7 @@ class CalendarController < ApplicationController
           month: month,
           day: 1,
         },
+        record: nil,
         records: Record.where(done_on: Time.new(year, month, 1).all_month),
       },
     )

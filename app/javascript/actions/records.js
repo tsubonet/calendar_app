@@ -6,14 +6,19 @@ export const fetchData = (url) => {
     NProgress.start();
     sendGet(url)
     .then((response) => {
-      dispatch({
-        type: 'GET_RECORDS',
-        records: response.records
-      });
-      dispatch({
-        type: 'GET_RECORD',
-        record: response.record
-      });
+
+      if (typeof response.records !== 'undefined') {
+        dispatch({
+          type: 'GET_RECORDS',
+          records: response.records
+        });
+      }
+      if (typeof response.record !== 'undefined') {
+        dispatch({
+          type: 'GET_RECORD',
+          record: response.record
+        });
+      }
       dispatch({
         type: 'GET_DATE',
         date: response.date
