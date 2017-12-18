@@ -44,9 +44,9 @@ export default class PageIndex extends React.Component {
 
   getToday() {
     return {
-      year: new Date().getFullYear(), // 今日の「年」(4桁までの年)
-      month: new Date().getMonth()+1, // 今日の「月」(0-11)+1
-      date: new Date().getDate(),	    // 今日の「日」(1-31)
+      year: new Date().getFullYear(),   // 今日の「年」(4桁までの年)
+      month: new Date().getMonth() + 1, // 今日の「月」(0-11)+1
+      date: new Date().getDate(),	      // 今日の「日」(1-31)
     }
   }
 
@@ -80,8 +80,8 @@ export default class PageIndex extends React.Component {
   render() {
     const days = ['月','火','水','木','金','土','日'];
     const daysLength = days.length;
-    const endOfPrevMonth    = new Date(this.state.date.year, this.state.date.month-1, 0); // 前月末
-    const endOfCurrentMonth = new Date(this.state.date.year, this.state.date.month, 0);   // 当月末
+    const endOfPrevMonth    = new Date(this.state.date.year, this.state.date.month - 1, 0); // 前月末
+    const endOfCurrentMonth = new Date(this.state.date.year, this.state.date.month, 0);     // 当月末
     const endOfPrevMonthDay     = endOfPrevMonth.getDay();  　 // 前月末曜日 (0-6)
     const endOfCurrentMonthDate = endOfCurrentMonth.getDate(); // 当月末日付 (1-31)
     const rows = Math.ceil((endOfPrevMonthDay + endOfCurrentMonthDate) / daysLength);	// カレンダーの行数

@@ -3,7 +3,7 @@ import NProgress from "nprogress"
 
 export const fetchData = (url) => {
   return dispatch => {
-    NProgress.start();
+    //NProgress.start();
     sendGet(url)
     .then((response) => {
 
@@ -25,9 +25,9 @@ export const fetchData = (url) => {
       });
     }).then(() => {
       window.scrollTo(0, 0);
-      NProgress.done();
+      //NProgress.done();
     }).catch(() => {
-      NProgress.done();
+      //NProgress.done();
     });
   };
 }

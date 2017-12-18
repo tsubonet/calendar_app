@@ -7,8 +7,10 @@ export default class PageDetail extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log(props);
     let { year, month, day } = this.props.match.params;
-    this.state = Object.assign({}, { record: this.props.record }, this.validDate(parseInt(year), parseInt(month), parseInt(day)));
+    const initialDate = this.validDate(parseInt(year), parseInt(month), parseInt(day));
+    this.state = Object.assign({}, { record: this.props.record }, initialDate);
     this.selectResult = this.selectResult.bind(this);
   }
 
@@ -35,7 +37,9 @@ export default class PageDetail extends React.Component {
         }
       }
     } else {
-      return this.props.date
+      return {
+        date: { ...this.props.date }
+      }
     }
   }
 
