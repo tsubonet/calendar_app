@@ -1,11 +1,14 @@
 import { sendGet } from "../utils"
 import NProgress from "nprogress"
 
-export const fetchData = (url) => {
+export const fetchData = (url, { pushState }) => {
   return dispatch => {
-    //NProgress.start();
+    NProgress.start();
     sendGet(url)
     .then((response) => {
+      if (pushState) {
+        history.pushState(null, "", url);
+      }
       dispatch({
         type: 'GET_DATE',
         date: response.date
@@ -28,9 +31,9 @@ export const fetchData = (url) => {
       }
     }).then(() => {
       window.scrollTo(0, 0);
-      //NProgress.done();
+      NProgress.done();
     }).catch(() => {
-      //NProgress.done();
+      NProgress.done();
     });
   };
 }

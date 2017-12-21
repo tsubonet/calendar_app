@@ -19,15 +19,21 @@ export default class Router extends React.Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      rootProps: nextProps,
+    });
+  }
+
   getChildContext() {
     return {
       onLinkClick: this.onLinkClick.bind(this),
     };
- }
+  }
 
   componentDidMount() {
     window.addEventListener("popstate", () => {
-      this.transitTo(document.location.href, { pushState: false });
+      this.props.transitTo(document.location.href, { pushState: false });
     });
   }
 
@@ -35,24 +41,8 @@ export default class Router extends React.Component {
     if (!event.metaKey) {
       event.preventDefault();
       const anchorElement = event.currentTarget.pathname ? event.currentTarget : event.currentTarget.querySelector("a");
-      this.transitTo(anchorElement.href, { pushState: true });
+      this.props.transitTo(anchorElement.href, { pushState: true });
     }
-  }
-
-  transitTo(url, { pushState }, data = {}) {
-    NProgress.start();
-    sendGet(url)
-    .then((rootProps) => {
-      if (pushState) {
-        history.pushState(data, "", url);
-      }
-      this.setState({ rootProps });
-    }).then(() => {
-      window.scrollTo(0, 0);
-      NProgress.done();
-    }).catch(() => {
-      NProgress.done();
-    });
   }
 
   getComponent() {

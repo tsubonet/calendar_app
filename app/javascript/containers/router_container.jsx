@@ -8,8 +8,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onFetchData: (event) => {
-      dispatch(fetchData(event.currentTarget.getAttribute('href')))
+    transitTo: (url, pushState) => {
+      dispatch(fetchData(url, pushState))
     },
   }
 }

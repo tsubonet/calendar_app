@@ -11,12 +11,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onFetchData: (event) => {
-      dispatch(fetchData(event.currentTarget.getAttribute('href')))
-    },
-    onFetchData2: (url) => {
-      dispatch(fetchData(url))
-    },
   }
 }
 

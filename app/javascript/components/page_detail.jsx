@@ -1,14 +1,16 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from 'prop-types'
+import React from 'react'
 import Link from '../components/link'
-import { sendPost, sendPatch } from "../utils";
+import { sendPost, sendPatch } from "../utils"
 
 export default class PageDetail extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.state = Object.assign({}, { record: this.props.record }, { date: this.props.date });
+    this.state = {
+      record: this.props.record,
+      date: this.props.date,
+    };
     this.selectResult = this.selectResult.bind(this);
   }
 
@@ -16,23 +18,6 @@ export default class PageDetail extends React.Component {
     this.setState({
       record: nextProps.record,
     });
-  }
-
-  validDate(yy, mm, dd) {
-    const dt = new Date(yy, mm - 1, dd);
-    if (dt.getFullYear() === yy && dt.getMonth() === mm-1 && dt.getDate() === dd){
-      return {
-        date: {
-          year: yy,
-          month: mm,
-          day: dd,
-        }
-      }
-    } else {
-      return {
-        date: { ...this.props.date }
-      }
-    }
   }
 
   selectResult(e) {
