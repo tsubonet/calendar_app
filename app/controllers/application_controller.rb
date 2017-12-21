@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   def common_props
     {
-      #actionPath: action_path,
+      actionPath: action_path,
       #currentUser: current_user,
     }
   end
@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     else
       render(
         html: view_context.react_component(
-          "App",
+          "Router",
           prerender: true,
           props: common_props.merge(props).as_json,
         ),

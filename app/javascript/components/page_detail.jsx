@@ -1,24 +1,18 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from '../components/link'
 import { sendPost, sendPatch } from "../utils/utils";
 
 export default class PageDetail extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
-    let { year, month, day } = this.props.match.params;
-    const initialDate = this.validDate(parseInt(year), parseInt(month), parseInt(day));
-    this.state = Object.assign({}, { record: this.props.record }, initialDate);
+
+    this.state = Object.assign({}, { record: this.props.record }, { date: this.props.date });
     this.selectResult = this.selectResult.bind(this);
   }
 
-  componentDidMount() {
-    window.addEventListener("popstate", () => {
-      this.props.onFetchData2(document.location.href)
-    });
-  }
+
 
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -86,7 +80,7 @@ export default class PageDetail extends React.Component {
         <button onClick={this.selectResult} className={this.state.record !== null && this.state.record.result === 'limited'? 'isSelected' : ''} data-result="limited">△</button>
         <button onClick={this.selectResult} className={this.state.record !== null && this.state.record.result === 'bad'? 'isSelected' : ''}     data-result="bad">×</button>
         <hr />
-        <Link to={`/month/${this.state.date.year}/${this.state.date.month}`} onClick={this.props.onFetchData}>もどる</Link>
+        <Link href={`/month/${this.state.date.year}/${this.state.date.month}`}>もどる</Link>
       </div>
     );
   }

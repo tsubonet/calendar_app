@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { getHoliday } from '../utils/utils';
-import { Link } from 'react-router-dom';
+import Link from '../components/link'
 
 export default class PageIndex extends React.Component {
 
@@ -17,12 +17,6 @@ export default class PageIndex extends React.Component {
     this.setState({
       date: nextProps.date,
       records: nextProps.records,
-    });
-  }
-
-  componentDidMount() {
-    window.addEventListener("popstate", () => {
-      this.props.onFetchData2(document.location.href)
     });
   }
 
@@ -95,9 +89,9 @@ export default class PageIndex extends React.Component {
       <div>
         <div>{this.state.date.year}年{this.state.date.month}月</div>
         <div>
-          <Link to={this.prevCalendar()} onClick={this.props.onFetchData} className='prev-button'>←</Link>
-          <Link to='/'                   onClick={this.props.onFetchData} className='today-button'>今月</Link>
-          <Link to={this.nextCalendar()} onClick={this.props.onFetchData} className='next-button'>→</Link>
+          <Link href={this.prevCalendar()} className='prev-button'>←</Link>
+          <Link href='/'                   className='today-button'>今月</Link>
+          <Link href={this.nextCalendar()} className='next-button'>→</Link>
         </div>
         <table>
           <thead>
@@ -125,7 +119,7 @@ export default class PageIndex extends React.Component {
                     });
                     return (
                       <td className={this.addDayClass(j, dd)} key={j}>
-                        <Link to={`/day/${this.state.date.year}/${this.state.date.month}/${dd}`} onClick={this.props.onFetchData}>
+                        <Link href={`/day/${this.state.date.year}/${this.state.date.month}/${dd}`}>
                           <div>{dd}</div>
                           {(() => {
                             if (typeof record !== 'undefined') {
