@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { getHoliday } from '../utils/utils';
+import { getHoliday } from '../utils';
 import Link from '../components/link'
 
 export default class PageIndex extends React.Component {

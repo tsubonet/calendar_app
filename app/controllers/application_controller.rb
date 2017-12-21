@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     else
       render(
         html: view_context.react_component(
-          "Router",
+          "App",
           prerender: true,
           props: common_props.merge(props).as_json,
         ),

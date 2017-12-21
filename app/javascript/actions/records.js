@@ -1,4 +1,4 @@
-import { sendGet } from "../utils/utils"
+import { sendGet } from "../utils"
 import NProgress from "nprogress"
 
 export const fetchData = (url) => {
@@ -6,7 +6,14 @@ export const fetchData = (url) => {
     //NProgress.start();
     sendGet(url)
     .then((response) => {
-
+      dispatch({
+        type: 'GET_DATE',
+        date: response.date
+      });
+      dispatch({
+        type: 'GET_ACTION_PATH',
+        actionPath: response.actionPath
+      });
       if (typeof response.records !== 'undefined') {
         dispatch({
           type: 'GET_RECORDS',
@@ -19,10 +26,6 @@ export const fetchData = (url) => {
           record: response.record
         });
       }
-      dispatch({
-        type: 'GET_DATE',
-        date: response.date
-      });
     }).then(() => {
       window.scrollTo(0, 0);
       //NProgress.done();

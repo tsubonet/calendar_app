@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Link from '../components/link'
-import { sendPost, sendPatch } from "../utils/utils";
+import { sendPost, sendPatch } from "../utils";
 
 export default class PageDetail extends React.Component {
 
@@ -11,8 +11,6 @@ export default class PageDetail extends React.Component {
     this.state = Object.assign({}, { record: this.props.record }, { date: this.props.date });
     this.selectResult = this.selectResult.bind(this);
   }
-
-
 
   componentWillReceiveProps(nextProps) {
     this.setState({
