@@ -3,7 +3,7 @@ import React from 'react'
 import Link from '../components/link'
 import { sendPost, sendPatch } from "../utils"
 
-export default class PageDetail extends React.Component {
+export default class CalendarDay extends React.Component {
 
   constructor(props) {
     super(props);

@@ -2,9 +2,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import NProgress from "nprogress"
 
-import PageIndexContainer from '../components/page_index'
-import PageDetailContainer from '../components/page_detail'
-import { sendGet } from "../utils"
+import CalendarMonthContainer from '../components/calendar_month'
+import CalendarDayContainer from '../components/calendar_day'
 
 export default class Router extends React.Component {
 
@@ -48,9 +47,11 @@ export default class Router extends React.Component {
   getComponent() {
     switch (this.state.rootProps.actionPath) {
       case "calendar#month":
-        return PageIndexContainer;
+        return CalendarMonthContainer;
       case "calendar#day":
-        return PageDetailContainer;
+        return CalendarDayContainer;
+      //case "calendar#year":
+      //  return CalendarYearContainer;
     }
   }
 

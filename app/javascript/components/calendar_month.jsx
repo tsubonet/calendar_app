@@ -3,7 +3,7 @@ import React from 'react'
 import { getHoliday } from '../utils'
 import Link from '../components/link'
 
-export default class PageIndex extends React.Component {
+export default class CalendarMonth extends React.Component {
 
   constructor(props) {
     super(props);

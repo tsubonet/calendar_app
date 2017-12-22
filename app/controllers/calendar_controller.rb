@@ -21,6 +21,7 @@ class CalendarController < ApplicationController
     )
   end
 
+
   def day
 
     begin
@@ -38,6 +39,28 @@ class CalendarController < ApplicationController
           day: day,
         },
         record: Record.find_by(done_on: "#{year}-#{month}-#{day}"),
+      },
+    )
+  end
+
+
+  def year
+
+    begin
+      Time.local(params[:year])
+      year = params[:year].to_i
+    rescue StandardError
+      year = Time.new.year
+    end
+
+    render_for_react(
+      props: {
+        date: {
+          year: year,
+          month: 1,
+          day: 1,
+        },
+        records: Record.where(done_on: Time.new(year, 1, 1).all_year),
       },
     )
   end

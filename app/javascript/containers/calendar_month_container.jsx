@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
-import { fetchData } from '../actions/records'
-import PageIndex from '../components/page_index'
+import CalendarMonth from '../components/calendar_month'
 
 const mapStateToProps = (state) => {
   return {
@@ -14,9 +13,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const PageIndexContainer = connect(
+const CalendarMonthContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(PageIndex)
+)(CalendarMonth)
 
-export default PageIndexContainer;
+export default CalendarMonthContainer;
