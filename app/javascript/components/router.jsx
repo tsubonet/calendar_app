@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import NProgress from "nprogress"
 
+import CalendarYearContainer from '../components/calendar_year'
 import CalendarMonthContainer from '../components/calendar_month'
 import CalendarDayContainer from '../components/calendar_day'
 
@@ -50,8 +51,8 @@ export default class Router extends React.Component {
         return CalendarMonthContainer;
       case "calendar#day":
         return CalendarDayContainer;
-      //case "calendar#year":
-      //  return CalendarYearContainer;
+      case "calendar#year":
+       return CalendarYearContainer;
     }
   }
 

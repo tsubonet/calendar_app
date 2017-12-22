@@ -10,12 +10,12 @@ export const fetchData = (url, { pushState }) => {
         history.pushState(null, "", url);
       }
       dispatch({
-        type: 'GET_DATE',
-        date: response.date
-      });
-      dispatch({
         type: 'GET_ACTION_PATH',
         actionPath: response.actionPath
+      });
+      dispatch({
+        type: 'GET_DATE',
+        date: response.date
       });
       if (typeof response.records !== 'undefined') {
         dispatch({
