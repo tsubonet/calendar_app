@@ -17,6 +17,7 @@ export default class CalendarDay extends React.Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       record: nextProps.record,
+      date: nextProps.date,
     });
   }
 
