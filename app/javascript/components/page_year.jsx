@@ -10,13 +10,19 @@ export default class PageYear extends React.Component {
     this.state = {...props};
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({...nextProps});
+  }
+
   render() {
     return (
       <div>
       {(() => {
         return [...Array(12).keys()].map((row, i) => {
+          let date = Object.assign({}, this.state.date);
+          date.month = row + 1;
           return (
-            <Calendar {...this.state} />
+            <Calendar key={i} date={date} records={this.state.records} />
           )
         });
       })()}
