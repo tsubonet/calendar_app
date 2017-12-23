@@ -2,9 +2,11 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import NProgress from "nprogress"
 
-import PageYearContainer from '../components/page_year'
-import PageMonthContainer from '../components/page_month'
-import PageDayContainer from '../components/page_day'
+import PageYearContainer from '../containers/page_year_container'
+import PageMonthContainer from '../containers/page_month_container'
+import PageDayContainer from '../containers/page_day_container'
+
+import Style from './hello_world.scss'
 
 export default class Router extends React.Component {
 
@@ -60,7 +62,7 @@ export default class Router extends React.Component {
     const Component = this.getComponent();
     return (
       <div>
-        <p>ラジオ体操</p>
+        <p className={Style.hoge}>ラジオ体操</p>
         <Component {...this.state.rootProps} />
       </div>
     )
