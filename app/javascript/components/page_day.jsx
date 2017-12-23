@@ -6,18 +6,12 @@ export default class PageDay extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      record: this.props.record,
-      date: this.props.date,
-    };
+    this.state = {...props};
     this.selectResult = this.selectResult.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      record: nextProps.record,
-      date: nextProps.date,
-    });
+    this.setState({...nextProps});
   }
 
   selectResult(e) {
