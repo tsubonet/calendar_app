@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 import Link from '../components/link'
 import { sendPost, sendPatch } from "../utils"

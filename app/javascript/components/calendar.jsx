@@ -1,9 +1,8 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 import { getHoliday } from '../utils'
 import Link from '../components/link'
 
-export default class Month extends React.Component {
+export default class Calendar extends React.Component {
 
   constructor(props) {
     super(props);

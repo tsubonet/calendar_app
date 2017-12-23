@@ -1,7 +1,6 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 import Link from '../components/link'
-import Month from '../components/month'
+import Calendar from '../components/Calendar'
 
 export default class PageMonth extends React.Component {
 
@@ -34,14 +33,14 @@ export default class PageMonth extends React.Component {
     return (
       <div>
         <div>
-          <Link href={`/year/${this.state.date.year}/`}>{this.state.date.year}年</Link>
+          <Link href={`/year/${this.state.date.year}`}>{this.state.date.year}年へ</Link>
         </div>
         <div>
           <Link href={this.prevCalendar()} className='prev-button'>←</Link>
           <Link href='/'                   className='today-button'>今月</Link>
           <Link href={this.nextCalendar()} className='next-button'>→</Link>
         </div>
-        <Month {...this.state} />
+        <Calendar {...this.state} />
       </div>
     );
   }
