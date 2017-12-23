@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { postRecord, patchRecord } from '../actions/records'
 import PageDay from '../components/page_day'
 
 const mapStateToProps = (state) => {
@@ -10,6 +11,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    postRecord: (date, result) => {
+      dispatch(postRecord(date, result))
+    },
+    patchRecord: (record, result) => {
+      dispatch(patchRecord(record, result))
+    },
   }
 }
 

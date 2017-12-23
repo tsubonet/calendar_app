@@ -16,30 +16,10 @@ export default class PageDay extends React.Component {
 
   selectResult(e) {
     const result = e.target.getAttribute("data-result");
-
     if (this.state.record !== null) {
-      sendPatch('/records/'+ this.state.record.id, {
-        result: result,
-      })
-      .then((data) => {
-        if (data.status === 'success') {
-          this.setState({
-            record: data.record
-          });
-        }
-      })
+      this.props.patchRecord(this.state.record, result);
     } else {
-      sendPost('/records', {
-        result: result,
-        done_on: `${this.state.date.year}-${this.state.date.month}-${this.state.date.day}`,
-      })
-      .then((data) => {
-        if (data.status === 'success') {
-          this.setState({
-            record: data.record
-          });
-        }
-      })
+      this.props.postRecord(this.state.date, result);
     }
   }
 

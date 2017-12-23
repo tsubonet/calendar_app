@@ -1,7 +1,7 @@
-import { sendGet } from "../utils"
+import { sendGet, sendPost, sendPatch } from "../utils"
 import NProgress from "nprogress"
 
-export const fetchData = (url, { pushState }) => {
+export const fetchRootProps = (url, { pushState }) => {
   return dispatch => {
     NProgress.start();
     sendGet(url)
@@ -34,6 +34,39 @@ export const fetchData = (url, { pushState }) => {
       NProgress.done();
     }).catch(() => {
       NProgress.done();
+    });
+  };
+}
+
+export const postRecord = (date, result) => {
+  return dispatch => {
+    sendPost('/records', {
+      result: result,
+      done_on: `${date.year}-${date.month}-${date.day}`,
+    })
+    .then((response) => {
+      if (response.status === 'success') {
+        dispatch({
+          type: 'GET_RECORD',
+          record: response.record
+        });
+      }
+    });
+  };
+}
+
+export const patchRecord = (record, result) => {
+  return dispatch => {
+    sendPatch(`/records/${record.id}`, {
+      result: result,
+    })
+    .then((response) => {
+      if (response.status === 'success') {
+        dispatch({
+          type: 'GET_RECORD',
+          record: response.record
+        });
+      }
     });
   };
 }
