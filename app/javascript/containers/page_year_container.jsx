@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import CalendarYear from '../components/calendar_year'
+import PageYear from '../components/page_year'
 
 const mapStateToProps = (state) => {
   return {
@@ -13,9 +13,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const CalendarYearContainer = connect(
+const PageYearContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CalendarYear)
+)(PageYear)
 
-export default CalendarYearContainer;
+export default PageYearContainer;

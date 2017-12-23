@@ -3,7 +3,7 @@ import React from 'react'
 import { getHoliday } from '../utils'
 import Link from '../components/link'
 
-export default class CalendarMonth extends React.Component {
+export default class PageMonth extends React.Component {
 
   constructor(props) {
     super(props);
@@ -87,12 +87,12 @@ export default class CalendarMonth extends React.Component {
 
     return (
       <div>
-        <div>{this.state.date.year}年{this.state.date.month}月</div>
         <div>
           <Link href={this.prevCalendar()} className='prev-button'>←</Link>
           <Link href='/'                   className='today-button'>今月</Link>
           <Link href={this.nextCalendar()} className='next-button'>→</Link>
         </div>
+        <div>{this.state.date.year}年{this.state.date.month}月</div>
         <table>
           <thead>
             <tr>

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import CalendarMonth from '../components/calendar_month'
+import PageMonth from '../components/page_month'
 
 const mapStateToProps = (state) => {
   return {
@@ -13,9 +13,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const CalendarMonthContainer = connect(
+const PageMonthContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CalendarMonth)
+)(PageMonth)
 
-export default CalendarMonthContainer;
+export default PageMonthContainer;

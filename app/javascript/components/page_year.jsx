@@ -3,7 +3,7 @@ import React from 'react'
 import { getHoliday } from '../utils'
 import Link from '../components/link'
 
-export default class CalendarYear extends React.Component {
+export default class PageYear extends React.Component {
 
   constructor(props) {
     super(props);
@@ -17,7 +17,7 @@ export default class CalendarYear extends React.Component {
     return (
       <div>
       year
-      </div>  
+      </div>
     )
   }
 }
