@@ -1,7 +1,7 @@
 const { environment } = require('@rails/webpacker')
 
 // Enable css modules with sass loader
-const sassLoader = environment.loaders.get('style')
+const sassLoader = environment.loaders.get('sass')
 const cssLoader = sassLoader.use.find(loader => loader.loader === 'css-loader')
 
 cssLoader.options = Object.assign(cssLoader.options, {

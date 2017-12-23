@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from '../components/link'
-import Calendar from '../components/Calendar'
+import Calendar from '../components/calendar'
 
 export default class PageMonth extends React.Component {
 

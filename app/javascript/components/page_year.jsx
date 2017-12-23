@@ -1,7 +1,7 @@
 import React from 'react'
 import { getHoliday } from '../utils'
 import Link from '../components/link'
-import Calendar from '../components/Calendar'
+import Calendar from '../components/calendar'
 
 export default class PageYear extends React.Component {
 
