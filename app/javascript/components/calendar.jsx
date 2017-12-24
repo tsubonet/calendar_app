@@ -64,14 +64,14 @@ export default class Calendar extends React.Component {
 
     return (
       <div>
-        <div>{this.state.date.year}年{this.state.date.month}月</div>
+        <div className='caption'>{this.state.date.year}年<span>{this.state.date.month}</span>月</div>
         <table>
           <thead>
             <tr>
             {(() => {
               return days.map((day, i) => {
                 return (
-                  <td className={this.addDayClass(i)} key={i}>{day}</td>
+                  <th className={this.addDayClass(i)} key={i}>{day}</th>
                 )
               });
             })()}
@@ -93,10 +93,10 @@ export default class Calendar extends React.Component {
                     return (
                       <td className={this.addDayClass(j, dd)} key={j}>
                         <Link href={`/day/${this.state.date.year}/${this.state.date.month}/${dd}`}>
-                          <div>{dd}</div>
+                          <div className='int'>{dd}</div>
                           {(() => {
                             if (typeof record !== 'undefined') {
-                              return <div>{record.result}</div>;
+                              return <div className='result'>{record.result}</div>;
                             }
                           })()}
                         </Link>

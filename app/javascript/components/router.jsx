@@ -6,7 +6,7 @@ import PageYearContainer from '../containers/page_year_container'
 import PageMonthContainer from '../containers/page_month_container'
 import PageDayContainer from '../containers/page_day_container'
 
-import Style from './hello_world.scss'
+import style from './hello_world.scss'
 
 export default class Router extends React.Component {
 
@@ -62,7 +62,7 @@ export default class Router extends React.Component {
     const Component = this.getComponent();
     return (
       <div>
-        <p className={Style.hoge}>ラジオ体操</p>
+        <p className={style.hoge}>ラジオ体操</p>
         <Component {...this.state.rootProps} />
       </div>
     )
