@@ -2,6 +2,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import NProgress from "nprogress"
 
+import Link from '../components/link'
+
 import PageYearContainer from '../containers/page_year_container'
 import PageMonthContainer from '../containers/page_month_container'
 import PageDayContainer from '../containers/page_day_container'
@@ -62,7 +64,7 @@ export default class Router extends React.Component {
     const Component = this.getComponent();
     return (
       <div>
-        <p className={style.hoge}>ラジオ体操</p>
+        <p className={style.hoge}><Link href='/'>たいせいくんのラジオ体操</Link></p>
         <Component {...this.state.rootProps} />
       </div>
     )

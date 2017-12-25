@@ -32,14 +32,14 @@ export default class PageMonth extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          <Link href={`/year/${this.state.date.year}`}>{this.state.date.year}年へ</Link>
-        </div>
-        <div>
-          <Link href={this.prevCalendar()} className='prev-button'>←</Link>
-          <Link href='/'                   className='today-button'>今月</Link>
-          <Link href={this.nextCalendar()} className='next-button'>→</Link>
-        </div>
+        <nav className="controll-nav">
+          <ul>
+            <li><Link href={this.prevCalendar()}><i className="fas fa-angle-left fa-2x"></i></Link></li>
+            <li><Link href={this.nextCalendar()}><i className="fas fa-angle-right fa-2x"></i></Link></li>
+            <li><Link href='/'><span className='button'>今月</span></Link></li>
+            <li><Link href={`/year/${this.state.date.year}`}><span className='button'>{this.state.date.year}年一覧</span></Link></li>
+          </ul>
+        </nav>
         <Calendar {...this.state} />
       </div>
     );
