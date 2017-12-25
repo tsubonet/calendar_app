@@ -19,7 +19,7 @@ export default class PageDay extends React.Component {
     if (this.state.record !== null) {
       this.props.patchRecord(this.state.record, result);
     } else {
-      this.props.postRecord(date, result);
+      this.props.postRecord(this.state.date, result);
     }
   }
 
