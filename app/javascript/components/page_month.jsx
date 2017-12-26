@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from '../components/link'
 import Calendar from '../components/calendar'
+import Charts from '../components/charts'
+
 
 export default class PageMonth extends React.Component {
 
@@ -41,6 +43,7 @@ export default class PageMonth extends React.Component {
           </ul>
         </nav>
         <Calendar {...this.state} />
+        <Charts {...this.state} />
       </div>
     );
   }
