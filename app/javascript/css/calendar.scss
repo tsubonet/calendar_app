@@ -39,6 +39,17 @@ td {
   padding-top: 20px;
   opacity: .2;
 }
+.sat, .sat a {
+  color: #627aff;
+}
+.sun, .sun a,
+.holiday, .holiday a {
+  color: #ff2043;
+}
+.today {
+  background: #eee;
+}
+
 @media (max-width: 640px) {
   td {
     a {
