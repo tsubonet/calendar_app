@@ -36,8 +36,8 @@ export default class PageMonth extends React.Component {
       <div>
         <nav className={style.controll_nav}>
           <ul>
-            <li><Link href={this.prevCalendar()}><i className="fas fa-angle-left fa-2x"></i></Link></li>
-            <li><Link href={this.nextCalendar()}><i className="fas fa-angle-right fa-2x"></i></Link></li>
+            <li><Link href={this.prevCalendar()}><i className='fas fa-angle-left fa-2x'></i></Link></li>
+            <li><Link href={this.nextCalendar()}><i className='fas fa-angle-right fa-2x'></i></Link></li>
             <li><Link href='/'><span className={style.controll_button}>今月</span></Link></li>
             <li><Link href={`/year/${this.state.date.year}`}><span className={style.controll_button}>{this.state.date.year}年一覧</span></Link></li>
           </ul>

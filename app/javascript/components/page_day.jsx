@@ -36,13 +36,13 @@ export default class PageDay extends React.Component {
       <div>
         <p className={style.caption}>{date.year}年{date.month}月{date.day}日</p>
         <dl className={style.result_box}>
-          <dt><i className="fas fa-hand-point-down"></i> この日の結果は...</dt>
+          <dt><i className='fas fa-hand-point-down'></i> この日の結果は...</dt>
           <dd>
           {(() => {
             if (record !== null) {
               return (
                 <div className={'result-image '+ record.result}>
-                  <div className={style.delete_btn}><a onClick={this.deleteResult}><i className="fas fa-trash-alt fa-2x"></i></a></div>
+                  <div className={style.delete_btn}><a onClick={this.deleteResult}><i className='fas fa-trash-alt fa-2x'></i></a></div>
                 </div>
               )
             } else {
@@ -52,16 +52,16 @@ export default class PageDay extends React.Component {
           </dd>
         </dl>
         <dl className={style.select_box}>
-          <dt><i className="fas fa-hand-point-down"></i> 結果を選択する</dt>
+          <dt><i className='fas fa-hand-point-down'></i> 結果を選択する</dt>
           <dd>
             <ul className={style.buttons}>
-              <li><a onClick={this.selectResult} className={record !== null && record.result === 'good'?    'isSelected' : ''} data-result="good"><span className={style.good}></span></a></li>
-              <li><a onClick={this.selectResult} className={record !== null && record.result === 'limited'? 'isSelected' : ''} data-result="limited"><span className={style.limited}></span></a></li>
-              <li><a onClick={this.selectResult} className={record !== null && record.result === 'bad'?     'isSelected' : ''} data-result="bad"><span className={style.bad}></span></a></li>
+              <li><a onClick={this.selectResult} className={record !== null && record.result === 'good'?    'isSelected' : ''} data-result='good'><span className={style.good}></span></a></li>
+              <li><a onClick={this.selectResult} className={record !== null && record.result === 'limited'? 'isSelected' : ''} data-result='limited'><span className={style.limited}></span></a></li>
+              <li><a onClick={this.selectResult} className={record !== null && record.result === 'bad'?     'isSelected' : ''} data-result='bad'><span className={style.bad}></span></a></li>
             </ul>
           </dd>
         </dl>
-        <Link href={`/month/${date.year}/${date.month}`}><i className="fas fa-angle-left"></i> カレンダーにもどる</Link>
+        <Link href={`/month/${date.year}/${date.month}`}><i className='fas fa-angle-left'></i> カレンダーにもどる</Link>
       </div>
     );
   }

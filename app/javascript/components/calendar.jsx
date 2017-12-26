@@ -87,8 +87,8 @@ export default class Calendar extends React.Component {
                   return days.map((day, j) => {
                     const dd = cells[j + ( i * daysLength )];
                     const record = this.state.records.find((record) => {
-                      //const pattern = new RegExp("\\d{4}-\\d{2}-" + String(dd).padStart(2, "0"));
-                      const pattern = new RegExp(String(this.state.date.year).padStart(4, "0") + "-" + String(this.state.date.month).padStart(2, "0") + "-" + String(dd).padStart(2, "0"));
+                      //const pattern = new RegExp('\\d{4}-\\d{2}-' + String(dd).padStart(2, '0'));
+                      const pattern = new RegExp(String(this.state.date.year).padStart(4, '0') + '-' + String(this.state.date.month).padStart(2, '0') + '-' + String(dd).padStart(2, '0'));
                       return pattern.test(record.done_on);
                     });
                     return (

@@ -18,13 +18,13 @@ export default class Charts extends React.Component {
         badCount = 0;
     this.state.records.forEach((record) => {
       switch (record.result) {
-        case "limited":
+        case 'limited':
           limitedCount++;
           break;
-        case "good":
+        case 'good':
           goodCount++;
           break;
-        case "bad":
+        case 'bad':
           badCount++;
           break;
       }
@@ -48,7 +48,7 @@ export default class Charts extends React.Component {
       <div style={containerStyle}>
         <ResponsiveContainer>
           <PieChart>
-            <Pie data={data} dataKey="value" startAngle={90} endAngle={-270}>
+            <Pie data={data} dataKey='value' startAngle={90} endAngle={-270}>
               {
                 data.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>)
               }

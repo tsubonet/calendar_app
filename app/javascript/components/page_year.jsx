@@ -26,7 +26,7 @@ export default class PageYear extends React.Component {
           )
         });
       })()}
-        <Link href={`/month/${this.state.date.year}/${this.state.date.month}`}><i className="fas fa-angle-left"></i> もどる</Link>
+        <Link href={`/month/${this.state.date.year}/${this.state.date.month}`}><i className='fas fa-angle-left'></i> もどる</Link>
       </div>
     )
   }
