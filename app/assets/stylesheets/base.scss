@@ -114,6 +114,7 @@ td {
     background-position: 50% 50%;
     background-size: 150px;
     background-repeat: no-repeat;
+    position: relative;
   }
   .bad {
     background-image: image-url("bad.jpg");
@@ -123,6 +124,18 @@ td {
   }
   .good {
     background-image: image-url("good.jpg");
+  }
+  .day-delete {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    a {
+      background: #fff;
+      border: 3px solid #ccc;
+      border-radius: 30px;
+      padding: 10px 12px;
+      display: block;
+    }
   }
 }
 .day-select {

@@ -8,6 +8,7 @@ export default class PageDay extends React.Component {
     super(props);
     this.state = {...props};
     this.selectResult = this.selectResult.bind(this);
+    this.deleteResult = this.deleteResult.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,17 +25,24 @@ export default class PageDay extends React.Component {
     }
   }
 
+  deleteResult(e) {
+    e.preventDefault();
+  }
   render() {
     const { date, record } = this.state;
     return (
       <div>
         <p className="day-caption">{date.year}年{date.month}月{date.day}日</p>
         <dl className="day-result">
-          <dt>この日の結果は...</dt>
+          <dt><i className="fas fa-hand-point-down"></i> この日の結果は...</dt>
           <dd>
           {(() => {
             if (record !== null) {
-              return <div className={record.result}></div>;
+              return (
+                <div className={record.result}>
+                  <div className="day-delete"><a onClick={this.deleteResult}><i className="fas fa-trash-alt fa-2x"></i></a></div>
+                </div>
+              )
             } else {
               return <div>まだ記入がありません</div>;
             }
@@ -42,7 +50,7 @@ export default class PageDay extends React.Component {
           </dd>
         </dl>
         <dl className="day-select">
-          <dt>結果を選択する</dt>
+          <dt><i className="fas fa-hand-point-down"></i> 結果を選択する</dt>
           <dd>
             <ul className="day-buttons">
               <li><a onClick={this.selectResult} className={record !== null && record.result === 'good'?    'isSelected' : ''} data-result="good"><span className="good"></span></a></li>
