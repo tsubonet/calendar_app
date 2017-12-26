@@ -12,7 +12,7 @@ a {
   color: #767676;
 }
 
-.caption {
+.calendar-caption {
   text-align: center;
   margin-bottom: 20px;
   span {
@@ -21,6 +21,7 @@ a {
 }
 table {
   width: 100%;
+  margin-bottom: 40px;
   border-collapse: collapse;
 }
 th, td {
@@ -39,32 +40,50 @@ td {
     padding: 10px;
     height: 70px;
     position: relative;
-    .int {
+    .calendar-int {
       position: absolute;
       top: 5px;
       left: 5px;
       font-size: 14px;
     }
-    .result {
+    .calendar-result {
       padding-top: 25px;
     }
     .fa-plus-circle {
       padding-top: 20px;
       opacity: .2;
     }
+    &.bad,
+    &.limited,
+    &.good {
+      background-position: 50% 50%;
+      background-size: 60px;
+      background-repeat: no-repeat;
+    }
+    &.bad {
+      background-size: 50px;
+      background-image: image-url("bad.jpg");
+    }
+    &.limited {
+      background-image: image-url("limited.jpg");
+    }
+    &.good {
+      background-image: image-url("good.jpg");
+    }
   }
 }
-.sun {
-  color: #ff2043;
-}
-.sat {
+.sat, .sat a {
   color: #627aff;
+}
+.sun, .sun a,
+.holiday, .holiday a {
+  color: #ff2043;
 }
 .today {
   background: #eee;
 }
 
-.controll-nav {
+.month-controll-nav {
   text-align: right;
   li {
     list-style: none;
@@ -76,5 +95,29 @@ td {
       padding: 10px 10px;
     }
   }
+}
 
+.day-caption {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.day-result {
+  text-align: center;
+  margin-bottom: 20px;
+  dd { margin:0 }
+}
+.day-select {
+  text-align: center;
+  margin-bottom: 20px;
+  dd { margin: 0 }
+}
+.day-buttons {
+  margin: 10px 0 0;
+  padding: 0;
+  text-align: center;
+  li {
+    width: 33.333%;
+    list-style: none;
+    display: inline-block;
+  }
 }

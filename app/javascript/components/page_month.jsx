@@ -32,7 +32,7 @@ export default class PageMonth extends React.Component {
   render() {
     return (
       <div>
-        <nav className="controll-nav">
+        <nav className="month-controll-nav">
           <ul>
             <li><Link href={this.prevCalendar()}><i className="fas fa-angle-left fa-2x"></i></Link></li>
             <li><Link href={this.nextCalendar()}><i className="fas fa-angle-right fa-2x"></i></Link></li>

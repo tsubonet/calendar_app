@@ -64,7 +64,7 @@ export default class Calendar extends React.Component {
 
     return (
       <div>
-        <div className='caption'>{this.state.date.year}年<span>{this.state.date.month}</span>月</div>
+        <div className='calendar-caption'>{this.state.date.year}年<span>{this.state.date.month}</span>月</div>
         <table>
           <thead>
             <tr>
@@ -93,14 +93,13 @@ export default class Calendar extends React.Component {
                     return (
                       <td className={this.addDayClass(j, dd)} key={j}>
                         {(() => {
-                          if (dd !== undefined) {
+                          if (typeof dd !== 'undefined') {
+                            const result = (typeof record !== 'undefined')? record.result: null;
                             return (
-                              <Link href={`/day/${this.state.date.year}/${this.state.date.month}/${dd}`}>
-                                <div className='int'>{dd}</div>
+                              <Link href={`/day/${this.state.date.year}/${this.state.date.month}/${dd}`} className={result}>
+                                <div className='calendar-int'>{dd}</div>
                                 {(() => {
-                                  if (typeof record !== 'undefined') {
-                                    return <div className='result'>{record.result}</div>;
-                                  } else {
+                                  if (result === null) {
                                     return <i className="fas fa-plus-circle fa-2x"></i>;
                                   }
                                 })()}

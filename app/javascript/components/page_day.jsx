@@ -27,17 +27,30 @@ export default class PageDay extends React.Component {
     const { date, record } = this.state;
     return (
       <div>
-        <p>{date.year}年{date.month}月{date.day}日</p>
-        {(() => {
-          if (record !== null) {
-            return <div>{record.result}</div>;
-          }
-        })()}
-        <button onClick={this.selectResult} className={record !== null && record.result === 'good'?    'isSelected' : ''} data-result="good">○</button>
-        <button onClick={this.selectResult} className={record !== null && record.result === 'limited'? 'isSelected' : ''} data-result="limited">△</button>
-        <button onClick={this.selectResult} className={record !== null && record.result === 'bad'?     'isSelected' : ''} data-result="bad">×</button>
-        <hr />
-        <Link href={`/month/${date.year}/${date.month}`}>もどる</Link>
+        <p className="day-caption">{date.year}年{date.month}月{date.day}日</p>
+        <dl className="day-result">
+          <dt>この日の結果は...</dt>
+          <dd>
+          {(() => {
+            if (record !== null) {
+              return <div>{record.result}</div>;
+            } else {
+              return <div>まだ記入がありません</div>;
+            }
+          })()}
+          </dd>
+        </dl>
+        <dl className="day-select">
+          <dt>結果を選択する</dt>
+          <dd>
+            <ul className="day-buttons">
+              <li><button onClick={this.selectResult} className={record !== null && record.result === 'good'?    'isSelected' : ''} data-result="good">○</button></li>
+              <li><button onClick={this.selectResult} className={record !== null && record.result === 'limited'? 'isSelected' : ''} data-result="limited">△</button></li>
+              <li><button onClick={this.selectResult} className={record !== null && record.result === 'bad'?     'isSelected' : ''} data-result="bad">×</button></li>
+            </ul>
+          </dd>
+        </dl>
+        <Link href={`/month/${date.year}/${date.month}`}><i className="fas fa-angle-left"></i> カレンダーにもどる</Link>
       </div>
     );
   }
