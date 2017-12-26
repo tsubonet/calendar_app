@@ -1,7 +1,16 @@
 import { sendGet, sendPost, sendPatch, sendDelete } from "./utils"
 
-export const deleteRecord = (record) => {
-  return sendDelete(`/records/${record.id}`)
+export const getRecord = (url) => {
+  return sendGet(url);
+}
+
+export const postRecord = (date, result) => {
+  return (
+    sendPost('/records', {
+      result: result,
+      done_on: `${date.year}-${date.month}-${date.day}`,
+    })
+  )
 }
 
 export const patchRecord = (record, result) => {
@@ -12,11 +21,6 @@ export const patchRecord = (record, result) => {
   )
 }
 
-export const postRecord = (date, result) => {
-  return (
-    sendPost('/records', {
-      result: result,
-      done_on: `${date.year}-${date.month}-${date.day}`,
-    })
-  )
+export const deleteRecord = (record) => {
+  return sendDelete(`/records/${record.id}`);
 }
