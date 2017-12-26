@@ -1,0 +1,64 @@
+.caption {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.result_box {
+  text-align: center;
+  margin-bottom: 20px;
+  dd { margin:0 }
+}
+.delete_btn {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  a {
+    background: #eee;
+    border: 3px solid #ccc;
+    border-radius: 30px;
+    padding: 10px 12px;
+    display: block;
+  }
+}
+.select_box {
+  text-align: center;
+  margin-bottom: 20px;
+  dd { margin: 0 }
+}
+
+.buttons {
+  margin: 10px 0 0;
+  padding: 0;
+  text-align: center;
+  li {
+    width: 33.333%;
+    list-style: none;
+    display: inline-block;
+    a {
+      display: block;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin: 0 4px;
+    }
+  }
+}
+.icon_common {
+  display: block;
+  width: 100%;
+  height: 100px;
+  margin: 0 auto;
+  background-position: 50% 50%;
+  background-size: 60px;
+  background-repeat: no-repeat;
+}
+.bad {
+  composes: icon_common;
+  background-image: url("/images/bad.jpg");
+}
+.limited {
+  composes: icon_common;
+  background-image: url("/images/limited.jpg");
+}
+.good {
+  composes: icon_common;
+  background-image: url("/images/good.jpg");
+}

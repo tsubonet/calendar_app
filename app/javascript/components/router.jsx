@@ -7,7 +7,7 @@ import PageYearContainer from '../containers/page_year_container'
 import PageMonthContainer from '../containers/page_month_container'
 import PageDayContainer from '../containers/page_day_container'
 
-import style from './hello_world.scss'
+import style from '../css/router.scss'
 
 export default class Router extends React.Component {
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from '../components/link'
 import { getHoliday } from '../utils'
+import style from '../css/calendar.scss'
 
 export default class Calendar extends React.Component {
 
@@ -33,17 +34,17 @@ export default class Calendar extends React.Component {
   addDayClass(i, dd = null) {
     let date = [];
     if (i === 5) {
-      date.push('sat');
+      date.push(style.sat);
     } else if (i === 6) {
-      date.push('sun');
+      date.push(style.sun);
     }
     if (this.isHoliday(dd)) {
-      date.push('holiday');
+      date.push(style.holiday);
     }
     if (this.getToday().year === this.state.date.year
      && this.getToday().month === this.state.date.month
      && this.getToday().date === dd) {
-      date.push('today');
+      date.push(style.today);
     }
     return (date.length === 0)? null: date.join(' ');
   }
@@ -64,7 +65,7 @@ export default class Calendar extends React.Component {
 
     return (
       <div>
-        <div className='calendar-caption'>{this.state.date.year}年<span>{this.state.date.month}</span>月</div>
+        <div className={style.caption}>{this.state.date.year}年<span>{this.state.date.month}</span>月</div>
         <table>
           <thead>
             <tr>
@@ -96,11 +97,11 @@ export default class Calendar extends React.Component {
                           if (typeof dd !== 'undefined') {
                             const result = (typeof record !== 'undefined')? record.result: null;
                             return (
-                              <Link href={`/day/${this.state.date.year}/${this.state.date.month}/${dd}`} className={result}>
-                                <div className='calendar-int'>{dd}</div>
+                              <Link href={`/day/${this.state.date.year}/${this.state.date.month}/${dd}`} className={'calendar-image ' + result}>
+                                <div className={style.calendar_int}>{dd}</div>
                                 {(() => {
                                   if (result === null) {
-                                    return <i className="fas fa-plus-circle fa-2x"></i>;
+                                    return <i className={'fas fa-plus-circle fa-2x ' + style.calendar_icon}></i>;
                                   }
                                 })()}
                               </Link>

@@ -1,208 +1,65 @@
+// common ////////////////////////
 body {
   color: #767676;
   font-family: "Sawarabi Gothic";
+}
+@media (max-width: 640px) {
+  body {
+    font-size: 14px;
+  }
 }
 .wrap {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 10px;
 }
-
 a {
   text-decoration: none;
   color: #767676;
 }
 
-.calendar-caption {
-  text-align: center;
-  margin-bottom: 20px;
-  span {
-    font-size: 40px;
+// calendar ////////////////////////
+.calendar-image {
+  background-position: 50% 50%;
+  background-size: 60px;
+  background-repeat: no-repeat;
+  &.bad {
+    background-size: 50px;
+    background-image: url("/images/bad.jpg");
+  }
+  &.limited {
+    background-image: url("/images/limited.jpg");
+  }
+  &.good {
+    background-image: url("/images/good.jpg");
   }
 }
-table {
-  width: 100%;
-  margin-bottom: 40px;
-  border-collapse: collapse;
-  table-layout: fixed;
-}
-th, td {
-  text-align: center;
-  width: 14.2857143%;
-  box-sizing: border-box;
-}
-th {
-  padding: 10px;
-  font-weight: normal;
-}
-td {
-  border: 1px solid #ccc;
-  a {
-    display: block;
-    padding: 10px;
-    height: 70px;
-    position: relative;
-    .calendar-int {
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      font-size: 14px;
-    }
-    .fa-plus-circle {
-      padding-top: 20px;
-      opacity: .2;
-    }
-    &.bad,
-    &.limited,
-    &.good {
-      background-position: 50% 50%;
-      background-size: 60px;
-      background-repeat: no-repeat;
-    }
-    &.bad {
-      background-size: 50px;
-      background-image: image-url("bad.jpg");
-    }
-    &.limited {
-      background-image: image-url("limited.jpg");
-    }
-    &.good {
-      background-image: image-url("good.jpg");
-    }
-  }
-}
-.sat, .sat a {
-  color: #627aff;
-}
-.sun, .sun a,
-.holiday, .holiday a {
-  color: #ff2043;
-}
-.today {
-  background: #eee;
-}
-
-.month-controll-nav {
-  ul {
-    padding: 0;
-    text-align: right;
-    li {
-      list-style: none;
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: 20px;
-      .button {
-        background: #f5f5f5;
-        padding: 10px 10px;
-      }
-    }
-  }
-}
-
-.day-caption {
-  text-align: center;
-  margin-bottom: 20px;
-}
-.day-result {
-  text-align: center;
-  margin-bottom: 20px;
-  dd { margin:0 }
-  .bad,
-  .limited,
-  .good {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-    background-position: 50% 50%;
-    background-size: 150px;
-    background-repeat: no-repeat;
-    position: relative;
-  }
-  .bad {
-    background-image: image-url("bad.jpg");
-  }
-  .limited {
-    background-image: image-url("limited.jpg");
-  }
-  .good {
-    background-image: image-url("good.jpg");
-  }
-  .day-delete {
-    position: absolute;
-    right: 5px;
-    bottom: 5px;
-    a {
-      background: #eee;
-      border: 3px solid #ccc;
-      border-radius: 30px;
-      padding: 10px 12px;
-      display: block;
-    }
-  }
-}
-.day-select {
-  text-align: center;
-  margin-bottom: 20px;
-  dd { margin: 0 }
-}
-.day-buttons {
-  margin: 10px 0 0;
-  padding: 0;
-  text-align: center;
-  li {
-    width: 33.333%;
-    list-style: none;
-    display: inline-block;
-    a {
-      display: block;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin: 0 4px;
-      .bad,
-      .limited,
-      .good {
-        display: block;
-        width: 100%;
-        height: 100px;
-        margin: 0 auto;
-        background-position: 50% 50%;
-        background-size: 60px;
-        background-repeat: no-repeat;
-      }
-      .bad {
-        background-image: image-url("bad.jpg");
-      }
-      .limited {
-        background-image: image-url("limited.jpg");
-      }
-      .good {
-        background-image: image-url("good.jpg");
-      }
-    }
-  }
-}
-
 @media (max-width: 640px) {
-  body {
-    font-size: 14px;
-  }
-  td {
-    a {
-      height: 50px;
-      padding: 10px 5px;
-      .fa-plus-circle {
-        padding-top: 15px;
-        transform: scale(0.6);
-      }
-      &.bad,
-      &.limited,
-      &.good {
-        background-position: 50% 60%;
-        background-size: 30px;
-      }
-      &.bad {
-        background-size: 20px;
-      }
+  .calendar-image {
+    background-position: 50% 60%;
+    background-size: 30px;
+    &.bad {
+      background-size: 20px;
     }
+  }
+}
+
+// day ////////////////////////
+.result-image {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  background-position: 50% 50%;
+  background-size: 150px;
+  background-repeat: no-repeat;
+  position: relative;
+  &.bad {
+    background-image: url("/images/bad.jpg");
+  }
+  &.limited {
+    background-image: url("/images/limited.jpg");
+  }
+  &.good {
+    background-image: url("/images/good.jpg");
   }
 }

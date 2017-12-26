@@ -1,0 +1,53 @@
+.caption {
+  text-align: center;
+  margin-bottom: 20px;
+  span {
+    font-size: 40px;
+  }
+}
+table {
+  width: 100%;
+  margin-bottom: 40px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+th, td {
+  text-align: center;
+  width: 14.2857143%;
+  box-sizing: border-box;
+}
+th {
+  padding: 10px;
+  font-weight: normal;
+}
+td {
+  border: 1px solid #ccc;
+  a {
+    display: block;
+    padding: 10px;
+    height: 70px;
+    position: relative;
+  }
+}
+.calendar_int {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 14px;
+}
+.calendar_icon {
+  padding-top: 20px;
+  opacity: .2;
+}
+@media (max-width: 640px) {
+  td {
+    a {
+      height: 50px;
+      padding: 10px 5px;
+    }
+  }
+  .calendar_icon {
+    padding-top: 15px;
+    transform: scale(0.6);
+  }
+}
