@@ -100,6 +100,8 @@ export default class Calendar extends React.Component {
                                 {(() => {
                                   if (typeof record !== 'undefined') {
                                     return <div className='result'>{record.result}</div>;
+                                  } else {
+                                    return <i className="fas fa-plus-circle fa-2x"></i>;
                                   }
                                 })()}
                               </Link>
