@@ -39,47 +39,24 @@ export const fetchRootProps = (url, { pushState }) => {
 }
 
 export const postRecord = (date, result) => {
-  return dispatch => {
-    sendPost('/records', {
-      result: result,
-      done_on: `${date.year}-${date.month}-${date.day}`,
-    })
-    .then((response) => {
-      if (response.status === 'success') {
-        dispatch({
-          type: 'GET_RECORD',
-          record: response.record
-        });
-      }
-    });
-  };
+  return {
+    type: 'POST_RECORD_REQUESTED',
+    date: date,
+    result: result,
+  }
 }
 
 export const patchRecord = (record, result) => {
-  return dispatch => {
-    sendPatch(`/records/${record.id}`, {
-      result: result,
-    })
-    .then((response) => {
-      if (response.status === 'success') {
-        dispatch({
-          type: 'GET_RECORD',
-          record: response.record
-        });
-      }
-    });
-  };
+  return {
+    type: 'PATCH_RECORD_REQUESTED',
+    record: record,
+    result: result,
+  }
 }
 
 export const deleteRecord = (record) => {
-  return dispatch => {
-    sendDelete(`/records/${record.id}`)
-    .then((response) => {
-      if (response.status === 'success') {
-        dispatch({
-          type: 'DELETE_RECORD',
-        });
-      }
-    });
-  };
+  return {
+    type: 'DELETE_RECORD_REQUESTED',
+    record: record,
+  }
 }
