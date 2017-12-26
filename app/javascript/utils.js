@@ -32,5 +32,14 @@ const sendPatch = (url, data) => {
   }).then(response => response.data);
 }
 
+const sendDelete = (url) => {
+  return axios.delete(url, {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': document.getElementsByName('csrf-token').item(0).content,
+    },
+  }).then(response => response.data);
+}
 
-export { getHoliday, sendGet, sendPost, sendPatch };
+export { getHoliday, sendGet, sendPost, sendPatch, sendDelete };

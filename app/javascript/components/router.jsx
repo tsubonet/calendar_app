@@ -64,7 +64,7 @@ export default class Router extends React.Component {
     const Component = this.getComponent();
     return (
       <div>
-        <p className={style.hoge}><Link href='/'>たいせいくんのラジオ体操</Link></p>
+        <div className={style.logo}><Link href='/'>たいせいくんのラジオ体操</Link></div>
         <Component {...this.state.rootProps} />
       </div>
     )

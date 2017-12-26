@@ -1,4 +1,4 @@
-import { sendGet, sendPost, sendPatch } from "../utils"
+import { sendGet, sendPost, sendPatch, sendDelete } from "../utils"
 import NProgress from "nprogress"
 
 export const fetchRootProps = (url, { pushState }) => {
@@ -65,6 +65,19 @@ export const patchRecord = (record, result) => {
         dispatch({
           type: 'GET_RECORD',
           record: response.record
+        });
+      }
+    });
+  };
+}
+
+export const deleteRecord = (record) => {
+  return dispatch => {
+    sendDelete(`/records/${record.id}`)
+    .then((response) => {
+      if (response.status === 'success') {
+        dispatch({
+          type: 'DELETE_RECORD',
         });
       }
     });

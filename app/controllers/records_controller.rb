@@ -38,6 +38,19 @@ class RecordsController < ApplicationController
     render json: response_data
   end
 
+  # DELETE /records/1
+  # DELETE /records/1.json
+  def destroy
+    record = Record.find(params[:id])
+    if record.destroy
+      response_data = {
+        status: 'success',
+        txt: ['削除しました！'],
+      }
+      render json: response_data, status: :ok
+    end
+  end
+
   private
     def record_params
       params.permit(:done_on, :result)

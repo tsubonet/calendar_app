@@ -3,6 +3,9 @@ export default function reducer(state = null, action) {
     case 'GET_RECORD': {
       return action.record
     }
+    case 'DELETE_RECORD': {
+      return null
+    }
     default: {
       return state
     }

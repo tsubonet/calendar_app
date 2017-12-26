@@ -27,6 +27,7 @@ export default class PageDay extends React.Component {
 
   deleteResult(e) {
     e.preventDefault();
+    this.props.deleteRecord(this.state.record);
   }
   render() {
     const { date, record } = this.state;
