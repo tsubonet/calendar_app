@@ -15,7 +15,8 @@ export default class PageDay extends React.Component {
   }
 
   selectResult(e) {
-    const result = e.target.getAttribute("data-result");
+    e.preventDefault();
+    const result = e.currentTarget.getAttribute("data-result");
     if (this.state.record !== null) {
       this.props.patchRecord(this.state.record, result);
     } else {
@@ -33,7 +34,7 @@ export default class PageDay extends React.Component {
           <dd>
           {(() => {
             if (record !== null) {
-              return <div>{record.result}</div>;
+              return <div className={record.result}></div>;
             } else {
               return <div>まだ記入がありません</div>;
             }
@@ -44,9 +45,9 @@ export default class PageDay extends React.Component {
           <dt>結果を選択する</dt>
           <dd>
             <ul className="day-buttons">
-              <li><button onClick={this.selectResult} className={record !== null && record.result === 'good'?    'isSelected' : ''} data-result="good">○</button></li>
-              <li><button onClick={this.selectResult} className={record !== null && record.result === 'limited'? 'isSelected' : ''} data-result="limited">△</button></li>
-              <li><button onClick={this.selectResult} className={record !== null && record.result === 'bad'?     'isSelected' : ''} data-result="bad">×</button></li>
+              <li><a onClick={this.selectResult} className={record !== null && record.result === 'good'?    'isSelected' : ''} data-result="good"><span className="good"></span></a></li>
+              <li><a onClick={this.selectResult} className={record !== null && record.result === 'limited'? 'isSelected' : ''} data-result="limited"><span className="limited"></span></a></li>
+              <li><a onClick={this.selectResult} className={record !== null && record.result === 'bad'?     'isSelected' : ''} data-result="bad"><span className="bad"></span></a></li>
             </ul>
           </dd>
         </dl>
