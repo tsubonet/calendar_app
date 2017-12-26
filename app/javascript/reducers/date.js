@@ -6,11 +6,9 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case 'GET_DATE': {
+    case 'GET_DATE':
       return Object.assign({}, state, action.date)
-    }
-    default: {
+    default:
       return state
-    }
   }
 }
