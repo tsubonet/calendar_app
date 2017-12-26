@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import NProgress from "nprogress"
 
 import Link from '../components/link'
 

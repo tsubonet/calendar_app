@@ -1,6 +1,6 @@
 import React from 'react'
-import { getHoliday } from '../utils'
 import Link from '../components/link'
+import { getHoliday } from '../utils'
 
 export default class Calendar extends React.Component {
 
