@@ -88,18 +88,24 @@ export default class Calendar extends React.Component {
                     const record = this.state.records.find((record) => {
                       //const pattern = new RegExp("\\d{4}-\\d{2}-" + String(dd).padStart(2, "0"));
                       const pattern = new RegExp(String(this.state.date.year).padStart(4, "0") + "-" + String(this.state.date.month).padStart(2, "0") + "-" + String(dd).padStart(2, "0"));
-                      return pattern.test(record.done_on)
+                      return pattern.test(record.done_on);
                     });
                     return (
                       <td className={this.addDayClass(j, dd)} key={j}>
-                        <Link href={`/day/${this.state.date.year}/${this.state.date.month}/${dd}`}>
-                          <div className='int'>{dd}</div>
-                          {(() => {
-                            if (typeof record !== 'undefined') {
-                              return <div className='result'>{record.result}</div>;
-                            }
-                          })()}
-                        </Link>
+                        {(() => {
+                          if (dd !== undefined) {
+                            return (
+                              <Link href={`/day/${this.state.date.year}/${this.state.date.month}/${dd}`}>
+                                <div className='int'>{dd}</div>
+                                {(() => {
+                                  if (typeof record !== 'undefined') {
+                                    return <div className='result'>{record.result}</div>;
+                                  }
+                                })()}
+                              </Link>
+                            )
+                          }
+                        })()}
                       </td>
                     )
                   });
