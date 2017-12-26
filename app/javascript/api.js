@@ -1,4 +1,13 @@
+import NProgress from "nprogress"
 import { sendGet, sendPost, sendPatch, sendDelete } from "./utils"
+
+export const loadingStart = () => {
+  return NProgress.start();
+}
+
+export const loadingEnd = () => {
+  return NProgress.done();
+}
 
 export const getRecord = (url) => {
   return sendGet(url);

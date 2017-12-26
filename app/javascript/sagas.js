@@ -1,10 +1,9 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { getRecord, postRecord, patchRecord, deleteRecord } from './api'
-import NProgress from "nprogress"
+import { getRecord, postRecord, patchRecord, deleteRecord, loadingStart, loadingEnd } from './api'
 
 function* handleFetchPootProps(action) {
-  NProgress.start();
   try {
+    loadingStart();
     const { actionPath, date, records, record } = yield call(getRecord, action.url);
     if (action.pushState) {
       history.pushState(null, "", action.url);
@@ -17,10 +16,10 @@ function* handleFetchPootProps(action) {
     if (typeof record !== 'undefined') {
       yield put({ type: 'GET_RECORD', record: record });
     }
-    NProgress.done();
+    loadingEnd();
     window.scrollTo(0, 0);
   } catch (e) {
-    NProgress.done();
+    loadingEnd();
   }
 }
 
