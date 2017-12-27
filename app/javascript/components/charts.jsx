@@ -45,18 +45,28 @@ export default class Charts extends React.Component {
     }
     const COLORS = ['#E2A27D', '#cf73c3', '#000000'];
     return (
-      <div style={containerStyle}>
-        <ResponsiveContainer>
-          <PieChart>
-            <Pie data={data} dataKey='value' startAngle={90} endAngle={-270}>
-              {
-                data.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>)
-              }
-            </Pie>
-            <Tooltip />
-            <Legend />
-          </PieChart>
-        </ResponsiveContainer>
+      <div>
+      {(() => {
+        if (this.state.records.length) {
+          return (
+            <div style={containerStyle}>
+              <ResponsiveContainer>
+                <PieChart>
+                  <Pie data={data} dataKey='value' startAngle={90} endAngle={-270}>
+                    {
+                      data.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>)
+                    }
+                  </Pie>
+                  <Tooltip />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          )
+        } else {
+          return null;
+        }
+      })()}
       </div>
     );
   }
