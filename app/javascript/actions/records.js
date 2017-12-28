@@ -1,8 +1,9 @@
-export const fetchRootProps = (url, { pushState }) => {
+export const fetchRootProps = (url, { pushState }, callback) => {
   return {
     type: 'FETCH_ROOT_RROPS_REQUESTED',
     url: url,
     pushState: pushState,
+    callback: callback,
   }
 }
 

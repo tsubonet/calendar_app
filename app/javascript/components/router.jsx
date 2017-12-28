@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-
+import { Route, Switch } from 'react-router-dom'
 import Link from '../components/link'
 
 import PageYearContainer from '../containers/page_year_container'
@@ -44,27 +44,22 @@ export default class Router extends React.Component {
     if (!event.metaKey) {
       event.preventDefault();
       const anchorElement = event.currentTarget.pathname ? event.currentTarget : event.currentTarget.querySelector("a");
-      this.props.transitTo(anchorElement.href, { pushState: true });
+      const url = anchorElement.getAttribute("href");
+      this.props.transitTo(url, { pushState: true }, () => this.props.history.push(url));
     }
   }
 
-  getComponent() {
-    switch (this.state.rootProps.actionPath) {
-      case "calendar#month":
-        return PageMonthContainer;
-      case "calendar#day":
-        return PageDayContainer;
-      case "calendar#year":
-        return PageYearContainer;
-    }
-  }
 
   render() {
-    const Component = this.getComponent();
     return (
       <div>
         <div className={style.logo}><Link href='/'>たいせいくんのラジオ体操</Link></div>
-        <Component {...this.state.rootProps} />
+        <Switch>
+          <Route exact path="/"                      component={PageMonthContainer} />
+          <Route exact path="/month/:year/:month"    component={PageMonthContainer} />
+          <Route exact path="/day/:year/:month/:day" component={PageDayContainer} />
+          <Route exact path="/year/:year/"           component={PageYearContainer} />
+        </Switch>
       </div>
     )
   }
