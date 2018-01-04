@@ -27,6 +27,9 @@ a {
     background-size: 50px;
     background-image: url("/images/bad.jpg");
   }
+  &.wakeup {
+    background-image: url("/images/wakeup.gif");
+  }
   &.limited {
     background-image: url("/images/limited.jpg");
   }
@@ -55,6 +58,9 @@ a {
   position: relative;
   &.bad {
     background-image: url("/images/bad.jpg");
+  }
+  &.wakeup {
+    background-image: url("/images/wakeup.gif");
   }
   &.limited {
     background-image: url("/images/limited.jpg");

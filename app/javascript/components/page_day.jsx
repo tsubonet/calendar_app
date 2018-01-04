@@ -30,6 +30,7 @@ export default class PageDay extends React.Component {
     e.preventDefault();
     this.props.deleteRecord(this.state.record);
   }
+
   render() {
     const { date, record } = this.state;
     return (
@@ -55,9 +56,30 @@ export default class PageDay extends React.Component {
           <dt><i className='fas fa-hand-point-down'></i> 結果を選択する</dt>
           <dd>
             <ul className={style.buttons}>
-              <li><a onClick={this.selectResult} className={record !== null && record.result === 'good'?    'isSelected' : ''} data-result='good'><span className={style.good}></span></a></li>
-              <li><a onClick={this.selectResult} className={record !== null && record.result === 'limited'? 'isSelected' : ''} data-result='limited'><span className={style.limited}></span></a></li>
-              <li><a onClick={this.selectResult} className={record !== null && record.result === 'bad'?     'isSelected' : ''} data-result='bad'><span className={style.bad}></span></a></li>
+              <li>
+                <a onClick={this.selectResult} className={record !== null && record.result === 'good'? 'isSelected' : ''} data-result='good'>
+                  <span className={style.good}></span>
+                  <span className={style.result_text}>完璧！</span>
+                </a>
+              </li>
+              <li>
+                <a onClick={this.selectResult} className={record !== null && record.result === 'limited'? 'isSelected' : ''} data-result='limited'>
+                  <span className={style.limited}></span>
+                  <span className={style.result_text}>半分くらいできた</span>
+                </a>
+              </li>
+              <li>
+                <a onClick={this.selectResult} className={record !== null && record.result === 'wakeup'? 'isSelected' : ''} data-result='wakeup'>
+                  <span className={style.wakeup}></span>
+                  <span className={style.result_text}>起きただけ</span>
+                </a>
+              </li>
+              <li>
+                <a onClick={this.selectResult} className={record !== null && record.result === 'bad'? 'isSelected' : ''} data-result='bad'>
+                  <span className={style.bad}></span>
+                  <span className={style.result_text}>起きれなかった</span>
+                </a>
+              </li>
             </ul>
           </dd>
         </dl>

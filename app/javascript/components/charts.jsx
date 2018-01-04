@@ -15,6 +15,7 @@ export default class Charts extends React.Component {
   render() {
     let limitedCount = 0,
         goodCount = 0,
+        wakeupCount = 0,
         badCount = 0;
     this.state.records.forEach((record) => {
       switch (record.result) {
@@ -24,15 +25,19 @@ export default class Charts extends React.Component {
         case 'good':
           goodCount++;
           break;
+        case 'wakeup':
+          wakeupCount++;
+          break;
         case 'bad':
           badCount++;
           break;
       }
     });
     const data = [
-      { name: 'よくできました！', value: goodCount },
-      { name: 'すこしだけできた！', value: limitedCount },
-      { name: '残念！', value: badCount },
+      { name: '完璧！', value: goodCount },
+      { name: '半分くらいできた', value: limitedCount },
+      { name: '起きただけ', value: wakeupCount },
+      { name: '起きれなかった', value: badCount },
     ]
     const containerStyle = {
       WebkitBoxSizing: 'border-box',
@@ -43,7 +48,7 @@ export default class Charts extends React.Component {
       maxHeight: '330px',
       margin: '0 auto'
     }
-    const COLORS = ['#E2A27D', '#cf73c3', '#000000'];
+    const COLORS = ['#E2A27D', '#cf73c3', '#cccccc', '#000000'];
     return (
       <div>
       {(() => {
