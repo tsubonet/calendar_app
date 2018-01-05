@@ -13,4 +13,8 @@
 .controll_button {
   background: #f5f5f5;
   padding: 10px 10px;
+  transition: background .3s;
+  &:hover {
+    background: #ccc;
+  }
 }

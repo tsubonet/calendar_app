@@ -27,6 +27,10 @@ td {
     padding: 10px;
     height: 70px;
     position: relative;
+    transition: opacity .3s;
+    &:hover {
+      opacity: .7;
+    }
   }
 }
 .calendar_int {
