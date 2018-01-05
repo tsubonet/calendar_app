@@ -17,6 +17,11 @@
     border-radius: 30px;
     padding: 10px 12px;
     display: block;
+    cursor: pointer;
+    transition: background .3s;
+    &:hover {
+      background: #fff;
+    }
   }
 }
 .select_box {
@@ -39,6 +44,11 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       margin: 0 4px;
+      cursor: pointer;
+      transition: opacity .3s;
+      &:hover {
+        opacity: .7;
+      }
     }
   }
 }
