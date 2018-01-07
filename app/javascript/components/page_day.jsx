@@ -88,6 +88,12 @@ export default class PageDay extends React.Component {
                   <span className={style.result_text}>起きれなかった</span>
                 </a>
               </li>
+              <li>
+                <a onClick={this.selectResult} className={record !== null && record.result === 'bad'? 'isSelected' : ''} data-result='sick'>
+                  <span className={style.sick}></span>
+                  <span className={style.result_text}>体調不良</span>
+                </a>
+              </li>
             </ul>
           </dd>
         </dl>

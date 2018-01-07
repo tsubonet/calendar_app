@@ -33,12 +33,13 @@
 .buttons {
   margin: 10px 0 0;
   padding: 0;
-  text-align: center;
+  text-align: left;
   li {
-    width: 25%;
+    width: 33.333%;
     list-style: none;
     display: inline-block;
     margin: 0 0 10px;
+    text-align: center;
     a {
       display: block;
       border: 1px solid #ccc;
@@ -65,6 +66,10 @@
   background-position: 50% 50%;
   background-size: 60px;
   background-repeat: no-repeat;
+}
+.sick {
+  composes: icon_common;
+  background-image: url("/images/sick.gif");
 }
 .bad {
   composes: icon_common;
