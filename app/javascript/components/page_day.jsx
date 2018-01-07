@@ -7,13 +7,13 @@ export default class PageDay extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {...props};
+    this.state = props;
     this.selectResult = this.selectResult.bind(this);
     this.deleteResult = this.deleteResult.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({...nextProps});
+    this.setState(nextProps);
   }
 
   selectResult(e) {

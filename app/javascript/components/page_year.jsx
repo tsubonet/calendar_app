@@ -7,11 +7,11 @@ export default class PageYear extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {...props};
+    this.state = props;
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({...nextProps});
+    this.setState(nextProps);
   }
 
   render() {
