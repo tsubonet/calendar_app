@@ -2,13 +2,13 @@
   "name": "board_app",
   "private": true,
   "scripts": {
-    "start": "rails s & bin/webpack-dev-server"
+    "start": "rails s & bin/webpack-dev-server",
+    "test": "jest"
   },
   "dependencies": {
     "@rails/webpacker": "^3.2.0",
     "axios": "^0.17.1",
     "babel-preset-react": "^6.24.1",
-    "coffeescript": "^2.0.3",
     "nprogress": "^0.2.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
@@ -21,6 +21,7 @@
     "redux-saga": "^0.16.0"
   },
   "devDependencies": {
+    "jest": "^22.0.4",
     "webpack-dev-server": "^2.9.7"
   }
 }
