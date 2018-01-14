@@ -28,7 +28,7 @@ export const patchRecord = (record, result) => {
   }
 }
 
-export const deleteRecord = (record) => {
+export const deleteRecord = record => {
   return {
     type: 'DELETE_RECORD_REQUESTED',
     payload: {

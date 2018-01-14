@@ -2,14 +2,14 @@ import { connect } from 'react-redux'
 import { postRecord, patchRecord, deleteRecord } from '../actions/records'
 import PageDay from '../components/page_day'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     date: state.date,
     record: state.record,
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     postRecord: (date, result) => {
       dispatch(postRecord(date, result))
@@ -17,15 +17,12 @@ const mapDispatchToProps = (dispatch) => {
     patchRecord: (record, result) => {
       dispatch(patchRecord(record, result))
     },
-    deleteRecord: (record) => {
+    deleteRecord: record => {
       dispatch(deleteRecord(record))
     },
   }
 }
 
-const PageDayContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(PageDay)
+const PageDayContainer = connect(mapStateToProps, mapDispatchToProps)(PageDay)
 
-export default PageDayContainer;
+export default PageDayContainer

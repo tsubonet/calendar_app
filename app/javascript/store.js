@@ -6,14 +6,9 @@ import createSagaMiddleware from 'redux-saga'
 import mySaga from './sagas'
 
 export default function configureStore(initialState) {
-
   const sagaMiddleware = createSagaMiddleware()
-  const store = createStore(
-    rootReducer,
-    initialState,
-    applyMiddleware(sagaMiddleware, logger)
-  );
+  const store = createStore(rootReducer, initialState, applyMiddleware(sagaMiddleware, logger))
   sagaMiddleware.run(mySaga)
 
-  return store;
+  return store
 }

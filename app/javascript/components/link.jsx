@@ -1,21 +1,20 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from 'prop-types'
+import React from 'react'
 
 export default class Link extends React.Component {
-
   static contextTypes = {
     onLinkClick: PropTypes.func,
   }
 
   onClick(event) {
-    this.context.onLinkClick(event);
+    this.context.onLinkClick(event)
   }
 
   render() {
-    return(
+    return (
       <a onClick={this.onClick.bind(this)} {...this.props}>
         {this.props.children}
       </a>
-    );
+    )
   }
 }

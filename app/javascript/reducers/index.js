@@ -9,6 +9,6 @@ const mainApp = combineReducers({
   date,
   records,
   record,
-});
+})
 
-export default mainApp;
+export default mainApp

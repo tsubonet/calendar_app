@@ -5,15 +5,15 @@ import RouterContainer from '../containers/router_container'
 import configureStore from '../store'
 
 const App = (props, railsContext) => {
-  const store = configureStore(props);
+  const store = configureStore(props)
   return (
     <Provider store={store}>
       <RouterContainer />
     </Provider>
   )
-};
+}
 
 // This is how react_on_rails can see the HelloWorld in the browser.
 ReactOnRails.register({
   App,
-});
+})

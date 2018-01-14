@@ -11,7 +11,8 @@ table {
   border-collapse: collapse;
   table-layout: fixed;
 }
-th, td {
+th,
+td {
   text-align: center;
   width: 14.2857143%;
   box-sizing: border-box;
@@ -27,9 +28,9 @@ td {
     padding: 10px;
     height: 70px;
     position: relative;
-    transition: opacity .3s;
+    transition: opacity 0.3s;
     &:hover {
-      opacity: .7;
+      opacity: 0.7;
     }
   }
 }
@@ -41,13 +42,16 @@ td {
 }
 .calendar_icon {
   padding-top: 20px;
-  opacity: .2;
+  opacity: 0.2;
 }
-.sat, .sat a {
+.sat,
+.sat a {
   color: #627aff;
 }
-.sun, .sun a,
-.holiday, .holiday a {
+.sun,
+.sun a,
+.holiday,
+.holiday a {
   color: #ff2043;
 }
 .today {
