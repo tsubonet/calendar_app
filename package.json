@@ -1,5 +1,5 @@
 {
-  "name": "board_app",
+  "name": "calendar_app",
   "jest": {
     "testPathIgnorePatterns": ["/config/"]
   },
@@ -27,6 +27,8 @@
     "babel-jest": "^22.0.6",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^22.0.5",
     "webpack-dev-server": "^2.10.1"
   }
