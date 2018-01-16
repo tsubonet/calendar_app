@@ -6,7 +6,11 @@ import style from '../css/page_day.scss'
 export default class PageDay extends React.Component {
   constructor(props) {
     super(props)
-    this.state = props
+    this.state = {
+      ...props,
+      c: false,
+    }
+    console.log('this.state', this.state)
     this.selectResult = this.selectResult.bind(this)
     this.deleteResult = this.deleteResult.bind(this)
   }
@@ -39,7 +43,7 @@ export default class PageDay extends React.Component {
   }
 
   render() {
-    const { date, record } = this.state
+    const { date, record, isEdit } = this.state
     return (
       <div>
         <p className={style.caption}>
@@ -67,65 +71,84 @@ export default class PageDay extends React.Component {
             })()}
           </dd>
         </dl>
-        <dl className={style.select_box}>
-          <dt>
-            <i className="fas fa-hand-point-down" /> 結果を選択する
-          </dt>
-          <dd>
-            <ul className={style.buttons}>
-              <li>
+        {(() => {
+          if (record === null || isEdit === true) {
+            return (
+              <dl className={style.select_box}>
+                <dt>
+                  <i className="fas fa-hand-point-down" /> 結果を選択する
+                </dt>
+                <dd>
+                  <ul className={style.buttons}>
+                    <li>
+                      <a
+                        onClick={this.selectResult}
+                        className={record !== null && record.result === 'good' ? 'isSelected' : ''}
+                        data-result="good"
+                      >
+                        <span className={style.good} />
+                        <span className={style.result_text}>完璧！</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        onClick={this.selectResult}
+                        className={record !== null && record.result === 'limited' ? 'isSelected' : ''}
+                        data-result="limited"
+                      >
+                        <span className={style.limited} />
+                        <span className={style.result_text}>半分くらいできた</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        onClick={this.selectResult}
+                        className={record !== null && record.result === 'wakeup' ? 'isSelected' : ''}
+                        data-result="wakeup"
+                      >
+                        <span className={style.wakeup} />
+                        <span className={style.result_text}>起きただけ</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        onClick={this.selectResult}
+                        className={record !== null && record.result === 'bad' ? 'isSelected' : ''}
+                        data-result="bad"
+                      >
+                        <span className={style.bad} />
+                        <span className={style.result_text}>起きれなかった</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        onClick={this.selectResult}
+                        className={record !== null && record.result === 'bad' ? 'isSelected' : ''}
+                        data-result="sick"
+                      >
+                        <span className={style.sick} />
+                        <span className={style.result_text}>体調不良</span>
+                      </a>
+                    </li>
+                  </ul>
+                </dd>
+              </dl>
+            )
+          } else {
+            return (
+              <div style={{ marginBottom: '10px' }}>
                 <a
-                  onClick={this.selectResult}
-                  className={record !== null && record.result === 'good' ? 'isSelected' : ''}
-                  data-result="good"
+                  href="javascript:;"
+                  onClick={() => {
+                    this.setState({ isEdit: true })
+                  }}
                 >
-                  <span className={style.good} />
-                  <span className={style.result_text}>完璧！</span>
+                  <i className="fas fa-angle-left" /> 結果を修正する
                 </a>
-              </li>
-              <li>
-                <a
-                  onClick={this.selectResult}
-                  className={record !== null && record.result === 'limited' ? 'isSelected' : ''}
-                  data-result="limited"
-                >
-                  <span className={style.limited} />
-                  <span className={style.result_text}>半分くらいできた</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  onClick={this.selectResult}
-                  className={record !== null && record.result === 'wakeup' ? 'isSelected' : ''}
-                  data-result="wakeup"
-                >
-                  <span className={style.wakeup} />
-                  <span className={style.result_text}>起きただけ</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  onClick={this.selectResult}
-                  className={record !== null && record.result === 'bad' ? 'isSelected' : ''}
-                  data-result="bad"
-                >
-                  <span className={style.bad} />
-                  <span className={style.result_text}>起きれなかった</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  onClick={this.selectResult}
-                  className={record !== null && record.result === 'bad' ? 'isSelected' : ''}
-                  data-result="sick"
-                >
-                  <span className={style.sick} />
-                  <span className={style.result_text}>体調不良</span>
-                </a>
-              </li>
-            </ul>
-          </dd>
-        </dl>
+              </div>
+            )
+          }
+        })()}
         <Link href={`/month/${date.year}/${date.month}`}>
           <i className="fas fa-angle-left" /> カレンダーにもどる
         </Link>
