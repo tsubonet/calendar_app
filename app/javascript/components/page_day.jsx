@@ -8,7 +8,7 @@ export default class PageDay extends React.Component {
     super(props)
     this.state = {
       ...props,
-      c: false,
+      isEdit: false,
     }
     console.log('this.state', this.state)
     this.selectResult = this.selectResult.bind(this)
