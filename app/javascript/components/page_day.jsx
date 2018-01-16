@@ -10,7 +10,6 @@ export default class PageDay extends React.Component {
       ...props,
       isEdit: false,
     }
-    console.log('this.state', this.state)
     this.selectResult = this.selectResult.bind(this)
     this.deleteResult = this.deleteResult.bind(this)
   }
