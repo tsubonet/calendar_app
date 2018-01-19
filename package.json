@@ -1,7 +1,10 @@
 {
   "name": "calendar_app",
   "jest": {
-    "testPathIgnorePatterns": ["/config/"]
+    "testPathIgnorePatterns": ["/config/"],
+    "moduleNameMapper": {
+      "\\.(css|scss)$": "<rootDir>/node_modules/jest-css-modules"
+    }
   },
   "private": true,
   "scripts": {
@@ -30,6 +33,7 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^22.0.5",
+    "jest-css-modules": "^1.1.0",
     "webpack-dev-server": "^2.10.1"
   }
 }

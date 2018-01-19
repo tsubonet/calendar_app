@@ -3,7 +3,7 @@ import { shallow } from 'enzyme'
 import Enzyme from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 Enzyme.configure({ adapter: new Adapter() })
-import PageDay from '../../components/link'
+import PageDay from '../../components/router'
 
 class App extends React.Component {
   constructor(props) {
