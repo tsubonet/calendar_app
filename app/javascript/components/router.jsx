@@ -10,8 +10,10 @@ import PageDayContainer from '../containers/page_day_container'
 import style from '../css/router.scss'
 
 export default class Router extends React.Component {
-  static childContextTypes = {
-    onLinkClick: PropTypes.func,
+  static get childContextTypes() {
+    return {
+      onLinkClick: PropTypes.func,
+    }
   }
 
   constructor(...args) {

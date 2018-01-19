@@ -2,8 +2,10 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 export default class Link extends React.Component {
-  static contextTypes = {
-    onLinkClick: PropTypes.func,
+  static get contextTypes() {
+    return {
+      onLinkClick: PropTypes.func,
+    }
   }
 
   onClick(event) {
