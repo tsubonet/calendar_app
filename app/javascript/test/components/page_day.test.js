@@ -40,15 +40,30 @@ describe('exist record test', () => {
 
   test('click edit record', () => {
     const patchFn = jest.fn()
-    const pageDay = mount(<PageDay {...props} patchRecord={patchFn} />)
-    expect(toJson(pageDay)).toMatchSnapshot()
+    patchFn.mockImplementation(() => {
+      return {
+        record: {
+          id: 56,
+          done_on: '2018-01-24',
+          result: 'bad',
+          created_at: '2018-01-08T05:33:57.000Z',
+          updated_at: '2018-01-08T05:33:57.000Z',
+        },
+      }
+    })
+    const pageDayBefore = mount(<PageDay {...props} patchRecord={patchFn} />)
+    expect(toJson(pageDayBefore)).toMatchSnapshot()
 
-    pageDay.find('.edit-trigger').simulate('click')
-    expect(pageDay.state('isEdit')).toBeTruthy()
-    expect(toJson(pageDay)).toMatchSnapshot()
+    pageDayBefore.find('.edit-trigger').simulate('click')
+    expect(pageDayBefore.state('isEdit')).toBeTruthy()
+    expect(pageDayBefore.find('.edit-trigger').length).toBe(0)
+    expect(toJson(pageDayBefore)).toMatchSnapshot()
 
-    pageDay.find('[data-result="bad"]').simulate('click')
+    pageDayBefore.find('[data-result="bad"]').simulate('click')
     expect(patchFn).toHaveBeenCalled()
+
+    const pageDayAfter = mount(<PageDay {...Object.assign({}, props, patchFn())} />)
+    expect(pageDayAfter.find('.result-image.bad').length).toBe(1)
   })
 })
 
