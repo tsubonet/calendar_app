@@ -58,7 +58,7 @@ export default class PageDay extends React.Component {
                 return (
                   <div className={'result-image ' + record.result}>
                     <div className={style.delete_btn}>
-                      <a onClick={this.deleteResult}>
+                      <a onClick={this.deleteResult} className="delete-trigger">
                         <i className="fas fa-trash-alt fa-2x" />
                       </a>
                     </div>
@@ -141,6 +141,7 @@ export default class PageDay extends React.Component {
                   onClick={() => {
                     this.setState({ isEdit: true })
                   }}
+                  className="edit-trigger"
                 >
                   <i className="fas fa-angle-left" /> 結果を修正する
                 </a>

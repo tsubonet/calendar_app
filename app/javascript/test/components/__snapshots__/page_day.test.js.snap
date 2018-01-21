@@ -1,0 +1,237 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`exist record test click edit record 1`] = `
+<PageDay
+  actionPath="calendar#day"
+  date={
+    Object {
+      "day": 24,
+      "month": 1,
+      "year": 2018,
+    }
+  }
+  patchRecord={[MockFunction]}
+  record={
+    Object {
+      "created_at": "2018-01-08T05:33:57.000Z",
+      "done_on": "2018-01-24",
+      "id": 56,
+      "result": "limited",
+      "updated_at": "2018-01-08T05:33:57.000Z",
+    }
+  }
+>
+  <div>
+    <p>
+      2018
+      年
+      1
+      月
+      24
+      日(
+      水
+      )
+    </p>
+    <dl>
+      <dt>
+        <i
+          className="fas fa-hand-point-down"
+        />
+         この日の結果は...
+      </dt>
+      <dd>
+        <div
+          className="result-image limited"
+        >
+          <div>
+            <a
+              className="delete-trigger"
+              onClick={[Function]}
+            >
+              <i
+                className="fas fa-trash-alt fa-2x"
+              />
+            </a>
+          </div>
+        </div>
+      </dd>
+    </dl>
+    <div
+      style={
+        Object {
+          "marginBottom": "10px",
+        }
+      }
+    >
+      <a
+        className="edit-trigger"
+        href="javascript:;"
+        onClick={[Function]}
+      >
+        <i
+          className="fas fa-angle-left"
+        />
+         結果を修正する
+      </a>
+    </div>
+    <Link
+      href="/month/2018/1"
+    >
+      <a
+        href="/month/2018/1"
+        onClick={[Function]}
+      >
+        <i
+          className="fas fa-angle-left"
+        />
+         カレンダーにもどる
+      </a>
+    </Link>
+  </div>
+</PageDay>
+`;
+
+exports[`exist record test click edit record 2`] = `
+<PageDay
+  actionPath="calendar#day"
+  date={
+    Object {
+      "day": 24,
+      "month": 1,
+      "year": 2018,
+    }
+  }
+  patchRecord={[MockFunction]}
+  record={
+    Object {
+      "created_at": "2018-01-08T05:33:57.000Z",
+      "done_on": "2018-01-24",
+      "id": 56,
+      "result": "limited",
+      "updated_at": "2018-01-08T05:33:57.000Z",
+    }
+  }
+>
+  <div>
+    <p>
+      2018
+      年
+      1
+      月
+      24
+      日(
+      水
+      )
+    </p>
+    <dl>
+      <dt>
+        <i
+          className="fas fa-hand-point-down"
+        />
+         この日の結果は...
+      </dt>
+      <dd>
+        <div
+          className="result-image limited"
+        >
+          <div>
+            <a
+              className="delete-trigger"
+              onClick={[Function]}
+            >
+              <i
+                className="fas fa-trash-alt fa-2x"
+              />
+            </a>
+          </div>
+        </div>
+      </dd>
+    </dl>
+    <dl>
+      <dt>
+        <i
+          className="fas fa-hand-point-down"
+        />
+         結果を選択する
+      </dt>
+      <dd>
+        <ul>
+          <li>
+            <a
+              className=""
+              data-result="good"
+              onClick={[Function]}
+            >
+              <span />
+              <span>
+                完璧！
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              className="isSelected"
+              data-result="limited"
+              onClick={[Function]}
+            >
+              <span />
+              <span>
+                半分くらいできた
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              className=""
+              data-result="wakeup"
+              onClick={[Function]}
+            >
+              <span />
+              <span>
+                起きただけ
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              className=""
+              data-result="bad"
+              onClick={[Function]}
+            >
+              <span />
+              <span>
+                起きれなかった
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              className=""
+              data-result="sick"
+              onClick={[Function]}
+            >
+              <span />
+              <span>
+                体調不良
+              </span>
+            </a>
+          </li>
+        </ul>
+      </dd>
+    </dl>
+    <Link
+      href="/month/2018/1"
+    >
+      <a
+        href="/month/2018/1"
+        onClick={[Function]}
+      >
+        <i
+          className="fas fa-angle-left"
+        />
+         カレンダーにもどる
+      </a>
+    </Link>
+  </div>
+</PageDay>
+`;
