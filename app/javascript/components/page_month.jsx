@@ -36,12 +36,12 @@ export default class PageMonth extends React.Component {
         <nav className={style.controll_nav}>
           <ul>
             <li>
-              <Link href={this.prevCalendar()}>
+              <Link href={this.prevCalendar()} data-link="prev">
                 <i className="fas fa-angle-left fa-2x" />
               </Link>
             </li>
             <li>
-              <Link href={this.nextCalendar()}>
+              <Link href={this.nextCalendar()} data-link="next">
                 <i className="fas fa-angle-right fa-2x" />
               </Link>
             </li>

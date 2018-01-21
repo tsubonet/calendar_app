@@ -18,13 +18,16 @@ describe('exist record test', () => {
 
   test('<Calendar>', () => {
     const calendar = mount(<Calendar {...props} />)
+    // サンプルデータを20180101とする
     // 20180101はカレンダーの一番左上にくる
     const day20180101 = calendar
       .find('tbody > tr')
       .first()
       .find('td')
       .first()
-    // 日付が正しく1日になっているか
+    // 年月が正しく表示されるか
+    expect(calendar.find('[data-role="caption"]').text()).toBe('2018年1月')
+    // 日付が正しく表示されるか
     expect(day20180101.text()).toBe('1')
     // リンク先が正しいか
     expect(day20180101.find('a').props().href).toBe('/day/2018/1/1')

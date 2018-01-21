@@ -68,7 +68,7 @@ export default class Calendar extends React.Component {
 
     return (
       <div>
-        <div className={style.caption}>
+        <div className={style.caption} data-role="caption">
           {this.state.date.year}年<span>{this.state.date.month}</span>月
         </div>
         <table>
