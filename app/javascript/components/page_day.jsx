@@ -65,7 +65,7 @@ export default class PageDay extends React.Component {
                   </div>
                 )
               } else {
-                return <div>まだ記入がありません</div>
+                return <div className="record-empty">まだ記入がありません</div>
               }
             })()}
           </dd>
