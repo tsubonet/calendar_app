@@ -6,7 +6,7 @@ import toJson from 'enzyme-to-json'
 import PageMonth from '../../components/page_month'
 Enzyme.configure({ adapter: new Adapter() })
 
-describe('exist record test', () => {
+describe('<PageMonth>', () => {
   let props = {}
   beforeEach(() => {
     props = {
@@ -16,7 +16,7 @@ describe('exist record test', () => {
     }
   })
 
-  test('<PageMonth>', () => {
+  test('should be correct link', () => {
     const pageMonth = mount(<PageMonth {...props} />)
     expect(pageMonth.find('Link[data-link="prev"]').props().href).toBe('/month/2017/12')
     expect(pageMonth.find('Link[data-link="next"]').props().href).toBe('/month/2018/2')

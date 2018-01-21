@@ -6,7 +6,7 @@ import toJson from 'enzyme-to-json'
 import Calendar from '../../components/calendar'
 Enzyme.configure({ adapter: new Adapter() })
 
-describe('exist record test', () => {
+describe('<Calendar>', () => {
   let props = {}
   beforeEach(() => {
     props = {
