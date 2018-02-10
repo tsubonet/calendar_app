@@ -2,6 +2,9 @@ class CalendarController < ApplicationController
 
   def month
 
+    # TODO
+    # 例外処理じゃなくて valid_date?をつかう
+    
     begin
       Time.local(params[:year], params[:month])
       year, month = params[:year].to_i, params[:month].to_i
