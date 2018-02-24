@@ -17,6 +17,7 @@ class CalendarController < ApplicationController
         date: {
           year: year,
           month: month,
+          day: 1,
         },
         records: Record.where(done_on: Time.new(year, month, 1).all_month),
       },
@@ -59,6 +60,8 @@ class CalendarController < ApplicationController
       props: {
         date: {
           year: year,
+          month: Time.new.month,
+          day: 1,
         },
         records: Record.where(done_on: Time.new(year, 1, 1).all_year),
       },
