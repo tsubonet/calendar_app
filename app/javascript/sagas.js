@@ -4,17 +4,20 @@ import { getRecord, postRecord, patchRecord, deleteRecord, loadingStart, loading
 function* handleFetchPootProps(action) {
   try {
     loadingStart()
-    const { actionPath, date, records, record } = yield call(getRecord, action.payload.url)
+    const { actionPath, date, record, records, recordsYear } = yield call(getRecord, action.payload.url)
     if (action.payload.pushState) {
       history.pushState(null, '', action.payload.url)
     }
-    yield put({ type: 'GET_ACTION_PATH', actionPath: actionPath })
-    yield put({ type: 'GET_DATE', date: date })
-    if (typeof records !== 'undefined') {
-      yield put({ type: 'GET_RECORDS', records: records })
-    }
+    yield put({ type: 'GET_ACTION_PATH', actionPath })
+    yield put({ type: 'GET_DATE', date })
     if (typeof record !== 'undefined') {
-      yield put({ type: 'GET_RECORD', record: record })
+      yield put({ type: 'GET_RECORD', record })
+    }
+    if (typeof records !== 'undefined') {
+      yield put({ type: 'GET_RECORDS', records })
+    }
+    if (typeof recordsYear !== 'undefined') {
+      yield put({ type: 'GET_RECORDSYEAR', recordsYear })
     }
     loadingEnd()
     window.scrollTo(0, 0)
@@ -26,14 +29,14 @@ function* handleFetchPootProps(action) {
 function* handlePostRecord(action) {
   const { status, record } = yield call(postRecord, action.payload.date, action.payload.result)
   if (status === 'success') {
-    yield put({ type: 'GET_RECORD', record: record })
+    yield put({ type: 'GET_RECORD', record })
   }
 }
 
 function* handlePatchRecord(action) {
   const { status, record } = yield call(patchRecord, action.payload.record, action.payload.result)
   if (status === 'success') {
-    yield put({ type: 'GET_RECORD', record: record })
+    yield put({ type: 'GET_RECORD', record })
   }
 }
 

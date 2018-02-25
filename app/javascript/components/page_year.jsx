@@ -17,10 +17,10 @@ export default class PageYear extends React.Component {
     return (
       <div>
         {(() => {
-          return [...Array(12).keys()].map((row, i) => {
+          return this.state.recordsYear.map((records, i) => {
             let date = Object.assign({}, this.state.date)
-            date.month = row + 1
-            return <Calendar key={i} date={date} records={this.state.records} />
+            date.month = i + 1
+            return <Calendar key={i} date={date} records={records} />
           })
         })()}
         <Link href={`/`}>
