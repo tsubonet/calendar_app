@@ -23,8 +23,8 @@ export default class PageYear extends React.Component {
             return <Calendar key={i} date={date} records={this.state.records} />
           })
         })()}
-        <Link href={`/month/${this.state.date.year}/${this.state.date.month}`}>
-          <i className="fas fa-angle-left" /> もどる
+        <Link href={`/`}>
+          <i className="fas fa-angle-left" /> 今月にもどる
         </Link>
       </div>
     )

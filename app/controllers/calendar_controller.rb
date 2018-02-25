@@ -60,7 +60,7 @@ class CalendarController < ApplicationController
       props: {
         date: {
           year: year,
-          month: Time.new.month,
+          month: 1,
           day: 1,
         },
         records: Record.where(done_on: Time.new(year, 1, 1).all_year),
