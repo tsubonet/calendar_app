@@ -69,7 +69,9 @@ export default class Calendar extends React.Component {
     return (
       <div>
         <div className={style.caption} data-role="caption">
-          {this.state.date.year}年<span>{this.state.date.month}</span>月
+          <Link href={`/month/${this.state.date.year}/${this.state.date.month}`}>
+            {this.state.date.year}年<span>{this.state.date.month}</span>月
+          </Link>
         </div>
         <table>
           <thead>
