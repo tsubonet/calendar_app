@@ -6,11 +6,6 @@ import style from '../css/calendar.scss'
 export default class Calendar extends React.Component {
   constructor(props) {
     super(props)
-    this.state = props
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState(nextProps)
   }
 
   getToday() {
@@ -22,9 +17,10 @@ export default class Calendar extends React.Component {
   }
 
   isHoliday(dd) {
-    const holidayList = getHoliday(this.state.date.year)
+    const { date } = this.props
+    const holidayList = getHoliday(date.year)
       .filter((holiday, i) => {
-        return parseInt(holiday.month) === this.state.date.month // 当月のみ格納
+        return parseInt(holiday.month) === date.month // 当月のみ格納
       })
       .map((holiday, i) => {
         return holiday.day
@@ -33,30 +29,28 @@ export default class Calendar extends React.Component {
   }
 
   addDayClass(i, dd = null) {
-    let date = []
+    const { date } = this.props
+    let decorate = []
     if (i === 5) {
-      date.push(style.sat)
+      decorate.push(style.sat)
     } else if (i === 6) {
-      date.push(style.sun)
+      decorate.push(style.sun)
     }
     if (this.isHoliday(dd)) {
-      date.push(style.holiday)
+      decorate.push(style.holiday)
     }
-    if (
-      this.getToday().year === this.state.date.year &&
-      this.getToday().month === this.state.date.month &&
-      this.getToday().date === dd
-    ) {
-      date.push(style.today)
+    if (this.getToday().year === date.year && this.getToday().month === date.month && this.getToday().date === dd) {
+      decorate.push(style.today)
     }
-    return date.length === 0 ? null : date.join(' ')
+    return decorate.length === 0 ? null : decorate.join(' ')
   }
 
   render() {
+    const { date, records } = this.props
     const days = ['月', '火', '水', '木', '金', '土', '日']
     const daysLength = days.length
-    const endOfPrevMonth = new Date(this.state.date.year, this.state.date.month - 1, 0) // 前月末
-    const endOfCurrentMonth = new Date(this.state.date.year, this.state.date.month, 0) // 当月末
+    const endOfPrevMonth = new Date(date.year, date.month - 1, 0) // 前月末
+    const endOfCurrentMonth = new Date(date.year, date.month, 0) // 当月末
     const endOfPrevMonthDay = endOfPrevMonth.getDay() // 前月末曜日 (0-6)
     const endOfCurrentMonthDate = endOfCurrentMonth.getDate() // 当月末日付 (1-31)
     const rows = Math.ceil((endOfPrevMonthDay + endOfCurrentMonthDate) / daysLength) // カレンダーの行数
@@ -69,8 +63,8 @@ export default class Calendar extends React.Component {
     return (
       <div>
         <div className={style.caption} data-role="caption">
-          <Link href={`/month/${this.state.date.year}/${this.state.date.month}`}>
-            {this.state.date.year}年<span>{this.state.date.month}</span>月
+          <Link href={`/month/${date.year}/${date.month}`}>
+            {date.year}年<span>{date.month}</span>月
           </Link>
         </div>
         <table>
@@ -95,12 +89,12 @@ export default class Calendar extends React.Component {
                     {(() => {
                       return days.map((day, j) => {
                         const dd = cells[j + i * daysLength]
-                        const record = this.state.records.find(record => {
+                        const record = records.find(record => {
                           //const pattern = new RegExp('\\d{4}-\\d{2}-' + String(dd).padStart(2, '0'));
                           const pattern = new RegExp(
-                            String(this.state.date.year).padStart(4, '0') +
+                            String(date.year).padStart(4, '0') +
                               '-' +
-                              String(this.state.date.month).padStart(2, '0') +
+                              String(date.month).padStart(2, '0') +
                               '-' +
                               String(dd).padStart(2, '0')
                           )
@@ -113,7 +107,7 @@ export default class Calendar extends React.Component {
                                 const result = typeof record !== 'undefined' ? record.result : null
                                 return (
                                   <Link
-                                    href={`/day/${this.state.date.year}/${this.state.date.month}/${dd}`}
+                                    href={`/day/${date.year}/${date.month}/${dd}`}
                                     className={'calendar-image ' + result}
                                   >
                                     <div className={style.calendar_int}>{dd}</div>

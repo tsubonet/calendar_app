@@ -4,20 +4,16 @@ import { ResponsiveContainer, PieChart, Pie, Cell, Legend, Tooltip } from 'recha
 export default class Charts extends React.Component {
   constructor(props) {
     super(props)
-    this.state = props
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState(nextProps)
   }
 
   render() {
+    const { records } = this.props
     let limitedCount = 0,
       goodCount = 0,
       wakeupCount = 0,
       badCount = 0,
       sickCount = 0
-    this.state.records.forEach(record => {
+    records.forEach(record => {
       switch (record.result) {
         case 'limited':
           limitedCount++
@@ -56,7 +52,7 @@ export default class Charts extends React.Component {
     return (
       <div>
         {(() => {
-          if (this.state.records.length) {
+          if (records.length) {
             return (
               <div style={containerStyle}>
                 <ResponsiveContainer>

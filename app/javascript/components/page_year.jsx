@@ -14,13 +14,14 @@ export default class PageYear extends React.Component {
   }
 
   render() {
+    const { recordsYear, date } = this.props
     return (
       <div>
         {(() => {
-          return this.state.recordsYear.map((records, i) => {
-            let date = Object.assign({}, this.state.date)
-            date.month = i + 1
-            return <Calendar key={i} date={date} records={records} />
+          return recordsYear.map((records, i) => {
+            let _date = Object.assign({}, date)
+            _date.month = i + 1
+            return <Calendar key={i} date={_date} records={records} />
           })
         })()}
         <Link href={`/`}>
