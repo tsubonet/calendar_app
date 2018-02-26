@@ -7,34 +7,31 @@ export default class PageDay extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      ...props,
       isEdit: false,
     }
     this.selectResult = this.selectResult.bind(this)
     this.deleteResult = this.deleteResult.bind(this)
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState(nextProps)
-  }
-
   selectResult(e) {
     e.preventDefault()
+    const { date, record, patchRecord, postRecord } = this.props
     const result = e.currentTarget.getAttribute('data-result')
-    if (this.state.record !== null) {
-      this.props.patchRecord(this.state.record, result)
+    if (record !== null) {
+      patchRecord(record, result)
     } else {
-      this.props.postRecord(this.state.date, result)
+      postRecord(date, result)
     }
   }
 
   deleteResult(e) {
     e.preventDefault()
-    this.props.deleteRecord(this.state.record)
+    const { deleteRecord, record } = this.props
+    deleteRecord(record)
   }
 
   getDay() {
-    const { date } = this.state
+    const { date } = this.props
     const dayNames = ['日', '月', '火', '水', '木', '金', '土']
     const targetDay = new Date(date.year, date.month - 1, date.day)
     const day = targetDay.getDay()
@@ -42,7 +39,8 @@ export default class PageDay extends React.Component {
   }
 
   render() {
-    const { date, record, isEdit } = this.state
+    const { date, record } = this.props
+    const { isEdit } = this.state
     return (
       <div>
         <p className={style.caption}>
