@@ -16,17 +16,8 @@ export default class Router extends React.Component {
     }
   }
 
-  constructor(...args) {
-    super(...args)
-    this.state = {
-      rootProps: this.props,
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      rootProps: nextProps,
-    })
+  constructor(props) {
+    super(props)
   }
 
   getChildContext() {
@@ -36,21 +27,24 @@ export default class Router extends React.Component {
   }
 
   componentDidMount() {
+    const { transitTo } = this.props
     window.addEventListener('popstate', () => {
-      this.props.transitTo(document.location.href, { pushState: false })
+      transitTo(document.location.href, { pushState: false })
     })
   }
 
   onLinkClick(event) {
     if (!event.metaKey) {
       event.preventDefault()
+      const { transitTo } = this.props
       const anchorElement = event.currentTarget.pathname ? event.currentTarget : event.currentTarget.querySelector('a')
-      this.props.transitTo(anchorElement.href, { pushState: true })
+      transitTo(anchorElement.href, { pushState: true })
     }
   }
 
   getComponent() {
-    switch (this.state.rootProps.actionPath) {
+    const { actionPath } = this.props
+    switch (actionPath) {
       case 'calendar#month':
         return PageMonthContainer
       case 'calendar#day':
@@ -67,7 +61,7 @@ export default class Router extends React.Component {
         <div className={style.logo}>
           <Link href="/">たいせいくんのラジオ体操</Link>
         </div>
-        <Component {...this.state.rootProps} />
+        <Component {...this.props} />
       </div>
     )
   }
