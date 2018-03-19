@@ -15,15 +15,13 @@ export const getRecord = url => {
 
 export const postRecord = (date, result) => {
   return sendPost('/records', {
-    result: result,
+    result,
     done_on: `${date.year}-${date.month}-${date.day}`,
   })
 }
 
 export const patchRecord = (record, result) => {
-  return sendPatch(`/records/${record.id}`, {
-    result: result,
-  })
+  return sendPatch(`/records/${record.id}`, { result })
 }
 
 export const deleteRecord = record => {

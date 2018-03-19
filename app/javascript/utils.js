@@ -203,7 +203,18 @@ const sendPost = (url, data) => {
         'X-CSRF-Token': document.getElementsByName('csrf-token').item(0).content,
       },
     })
-    .then(response => response.data)
+    .then(response => {
+      return {
+        status: response.status,
+        ...response.data,
+      }
+    })
+    .catch(error => {
+      return {
+        status: error.response.status,
+        ...error.response.data,
+      }
+    })
 }
 
 const sendPatch = (url, data) => {
@@ -215,7 +226,18 @@ const sendPatch = (url, data) => {
         'X-CSRF-Token': document.getElementsByName('csrf-token').item(0).content,
       },
     })
-    .then(response => response.data)
+    .then(response => {
+      return {
+        status: response.status,
+        ...response.data,
+      }
+    })
+    .catch(error => {
+      return {
+        status: error.response.status,
+        ...error.response.data,
+      }
+    })
 }
 
 const sendDelete = url => {
@@ -227,7 +249,18 @@ const sendDelete = url => {
         'X-CSRF-Token': document.getElementsByName('csrf-token').item(0).content,
       },
     })
-    .then(response => response.data)
+    .then(response => {
+      return {
+        status: response.status,
+        ...response.data,
+      }
+    })
+    .catch(error => {
+      return {
+        status: error.response.status,
+        ...error.response.data,
+      }
+    })
 }
 
 export { getHoliday, sendGet, sendPost, sendPatch, sendDelete }

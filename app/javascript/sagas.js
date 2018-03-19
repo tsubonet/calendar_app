@@ -29,7 +29,7 @@ function* handleFetchPootProps(action) {
 function* handlePostRecord(action) {
   yield call(loadingStart)
   const { status, record, txt } = yield call(postRecord, action.payload.date, action.payload.result)
-  if (status === 'success') {
+  if (status === 201) {
     yield put({ type: 'GET_RECORD', record })
   }
   yield call(loadingEnd)
@@ -37,8 +37,8 @@ function* handlePostRecord(action) {
 
 function* handlePatchRecord(action) {
   yield call(loadingStart)
-  const { status, record, txt } = yield call(patchRecord, action.payload.record, action.payload.result)
-  if (status === 'success') {
+  const { status, record } = yield call(patchRecord, action.payload.record, action.payload.result)
+  if (status === 200) {
     yield put({ type: 'GET_RECORD', record })
   }
   yield call(loadingEnd)
@@ -46,8 +46,8 @@ function* handlePatchRecord(action) {
 
 function* handleDeleteRecord(action) {
   yield call(loadingStart)
-  const { status, txt } = yield call(deleteRecord, action.payload.record)
-  if (status === 'success') {
+  const { status } = yield call(deleteRecord, action.payload.record)
+  if (status === 200) {
     yield put({ type: 'DELETE_RECORD' })
   }
   yield call(loadingEnd)
