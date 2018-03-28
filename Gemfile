@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'react_on_rails', '10.0.2'
+gem 'react_on_rails', '10.1.3'
 gem 'foreman'
 gem 'mysql2'
 
