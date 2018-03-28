@@ -37,7 +37,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'react_on_rails', '10.1.3'
 gem 'foreman'
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.20'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
