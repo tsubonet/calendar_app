@@ -6,12 +6,13 @@ class CalendarController < ApplicationController
     # 例外処理じゃなくて valid_date?をつかう
     
     begin
-      p "###################################"
-      p params[:year]
-      p params[:month]
-      p "###################################"
-      Time.local(params[:year], params[:month])
-      year, month = params[:year].to_i, params[:month].to_i
+      year, month = Time.new.year, Time.new.month
+      # p "###################################"
+      # p params[:year]
+      # p params[:month]
+      # p "###################################"
+      # Time.local(params[:year], params[:month])
+      # year, month = params[:year].to_i, params[:month].to_i
     rescue StandardError
       year, month = Time.new.year, Time.new.month
     end
