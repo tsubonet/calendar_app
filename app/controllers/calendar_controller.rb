@@ -2,31 +2,28 @@ class CalendarController < ApplicationController
 
   def month
 
+    render :text => 'Hello'
+
     # TODO
     # 例外処理じゃなくて valid_date?をつかう
     
-    begin
-      year, month = Time.new.year, Time.new.month
-      # p "###################################"
-      # p params[:year]
-      # p params[:month]
-      # p "###################################"
-      # Time.local(params[:year], params[:month])
-      # year, month = params[:year].to_i, params[:month].to_i
-    rescue StandardError
-      year, month = Time.new.year, Time.new.month
-    end
+    # begin
+    #   Time.local(params[:year], params[:month])
+    #   year, month = params[:year].to_i, params[:month].to_i
+    # rescue StandardError
+    #   year, month = Time.new.year, Time.new.month
+    # end
 
-    render_for_react(
-      props: {
-        date: {
-          year: year,
-          month: month,
-          day: 1,
-        },
-        records: Record.where(done_on: Time.new(year, month, 1).all_month),
-      },
-    )
+    # render_for_react(
+    #   props: {
+    #     date: {
+    #       year: year,
+    #       month: month,
+    #       day: 1,
+    #     },
+    #     records: Record.where(done_on: Time.new(year, month, 1).all_month),
+    #   },
+    # )
   end
 
 
