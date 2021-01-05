@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@rails/webpacker": "^3.2.0",
-    "axios": "^0.17.1",
+    "axios": "^0.21.1",
     "babel-preset-react": "^6.24.1",
     "nprogress": "^0.2.0",
     "prop-types": "^15.6.0",
